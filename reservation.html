@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation | RestaurantHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <h1 class="logo"><a href="index.html">Restaurant<span>Hub</span></a></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="reservation">
+    <h2>Book a Table</h2>
+    <form class="reservation-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="date" required>
+      <input type="time" required>
+      <select required>
+        <option value="" disabled selected>Select Number of Guests</option>
+        <option value="2">2 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="6">6 Guests</option>
+        <option value="8">8 Guests</option>
+      </select>
+      <textarea placeholder="Special Requests (Optional)" rows="4"></textarea>
+      <button type="submit" class="reserve-btn">Reserve Table</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 RestaurantHub | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
