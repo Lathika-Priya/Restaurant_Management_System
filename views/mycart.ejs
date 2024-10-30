@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cart | RestaurantHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style2.css">
+  <style>
+    /* Cart Page Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    .cart {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .cart h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+    .cart-item-info {
+      flex-grow: 1;
+    }
+    .cart-item-info h3 {
+      font-size: 18px;
+      margin: 0;
+      color: #333;
+    }
+    .cart-item-info p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    .total-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .checkout-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <h1 class="logo"><a href="/">Restaurant<span>Hub</span></a></h1>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="reservation">Reservations</a></li>
+        <li><a href="delivery">Delivery</a></li>
+        <li><a href="menu">Menu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="cart">
+    <h2>My Cart</h2>
+    <div class="cart-items"></div>
+    <div class="total-container">
+      <span>Total:</span>
+      <span>₹<span class="total-price">0</span></span>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+  </section>
+
+  <script>
+    // Load cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+    // Function to display cart items
+    function displayCart() {
+      const cartItemsContainer = document.querySelector('.cart-items');
+      cartItemsContainer.innerHTML = ''; // Clear any previous cart items
+      let totalPrice = 0;
+
+      // Iterate through cart items
+      for (const itemName in cart) {
+        const item = cart[itemName];
+        if (item.quantity > 0) {
+          const itemElement = document.createElement('div');
+          itemElement.classList.add('cart-item');
+          itemElement.innerHTML = `
+            <img src="${item.image}" alt="${itemName}">
+            <div class="cart-item-info">
+              <h3>${itemName}</h3>
+              <p>Price: ₹${item.price}</p>
+              <p>Quantity: ${item.quantity}</p>
+              <p>Subtotal: ₹${item.price * item.quantity}</p>
+            </div>
+          `;
+          cartItemsContainer.appendChild(itemElement);
+          totalPrice += item.price * item.quantity; // Add to total price
+        }
+      }
+      
+      // Update total price
+      document.querySelector('.total-price').textContent = totalPrice;
+    }
+
+    // Function to handle checkout
+    function checkout() {
+      alert("Proceeding to checkout with total: ₹" + document.querySelector('.total-price').textContent);
+      // Additional checkout logic can be added here
+    }
+
+    // Display cart items on page load
+    displayCart();
+  </script>
+</body>
+</html>

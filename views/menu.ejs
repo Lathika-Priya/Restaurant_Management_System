@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | RestaurantHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style2.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <h1 class="logo"><a href="/">Restaurant<span>Hub</span></a></h1>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="reservation">Reservations</a></li>
+        <li><a href="delivery">Delivery</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="menu">
+    <h2>Explore Our Menu</h2>
+    <div class="menu-grid">
+      <!-- Menu Item 1 -->
+      <div class="menu-item">
+        <img src="/pictures/pizza.jpg" alt="Pizza">
+        <h3>Margherita Pizza</h3>
+        <p>₹250</p>
+        <button class="decrease-btn" onclick="decreaseCount(this)">-</button>
+        <span class="quantity">0</span>
+        <button class="increase-btn" onclick="increaseCount(this)">+</button>
+      </div>
+      <!-- Menu Item 2 -->
+      <div class="menu-item">
+        <img src="/pictures/burger.avif" alt="Burger">
+        <h3>Cheeseburger</h3>
+        <p>₹150</p>
+        <button class="decrease-btn" onclick="decreaseCount(this)">-</button>
+        <span class="quantity">0</span>
+        <button class="increase-btn" onclick="increaseCount(this)">+</button>
+      </div>
+      <!-- Menu Item 3 -->
+      <div class="menu-item">
+        <img src="/pictures/pasta.jpg" alt="Pasta">
+        <h3>Penne Alfredo</h3>
+        <p>₹300</p>
+        <button class="decrease-btn" onclick="decreaseCount(this)">-</button>
+        <span class="quantity">0</span>
+        <button class="increase-btn" onclick="increaseCount(this)">+</button>
+      </div>
+      <!-- Menu Item 4 -->
+      <div class="menu-item">
+        <img src="/pictures/chocolatebrownie.webp" alt="Dessert">
+        <h3>Chocolate Brownie</h3>
+        <p>₹120</p>
+        <button class="decrease-btn" onclick="decreaseCount(this)">-</button>
+        <span class="quantity">0</span>
+        <button class="increase-btn" onclick="increaseCount(this)">+</button>
+      </div>
+    </div>
+  </section>
+
+  <button onclick="viewCart()">View Cart</button>
+
+  <script>
+    const cart = {};
+
+    // Function to increase count and update cart
+    function increaseCount(button) {
+      const quantityDisplay = button.previousElementSibling;
+      let count = parseInt(quantityDisplay.textContent);
+      quantityDisplay.textContent = ++count;
+
+      const menuItem = button.closest('.menu-item');
+      const itemName = menuItem.querySelector('h3').textContent;
+      const itemPrice = parseInt(menuItem.querySelector('p').textContent.replace('₹', ''));
+      const itemImage = menuItem.querySelector('img').src;
+
+      if (!cart[itemName]) {
+        cart[itemName] = { price: itemPrice, quantity: 0, image: itemImage };
+      }
+      cart[itemName].quantity = count;
+    }
+
+    // Function to decrease count and update cart
+    function decreaseCount(button) {
+      const quantityDisplay = button.nextElementSibling;
+      let count = parseInt(quantityDisplay.textContent);
+      if (count > 0) quantityDisplay.textContent = --count;
+
+      const menuItem = button.closest('.menu-item');
+      const itemName = menuItem.querySelector('h3').textContent;
+
+      if (cart[itemName]) {
+        cart[itemName].quantity = count;
+        if (count === 0) {
+          delete cart[itemName]; // Remove item if quantity is 0
+        }
+      }
+    }
+
+    // Function to navigate to My Cart page and display the cart items
+    function viewCart() {
+      const filteredCart = {};
+      for (const itemName in cart) {
+        if (cart[itemName].quantity > 0) {
+          filteredCart[itemName] = cart[itemName];
+        }
+      }
+      localStorage.setItem('cart', JSON.stringify(filteredCart)); // Save filtered cart to localStorage
+      window.location.href = 'mycart'; // Redirect to My Cart page
+    }
+  </script>
+</body>
+</html>
