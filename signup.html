@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informal Food Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional styling for a blurred background image */
+        body::before {
+            content: '';
+            background: url('/public/pictures/background1.jpg') center center / cover no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(8px);
+            z-index: -1;
+            background-color: black; /* Black overlay */
+        }
+    </style>
+</head>
+<body class="bg-black bg-opacity-50 flex items-center justify-center h-screen">
+    <!-- Main Container -->
+    <div class="bg-opacity-90 w-full max-w-4xl rounded-3xl overflow-hidden shadow-lg flex backdrop-blur-lg">
+        <!-- Image and Logo Section -->
+     
+        <!-- Login Form Section -->
+        <div class="w-1/2 p-10 flex flex-col justify-center space-y-6">
+            <h2 class="text-3xl font-bold text-white mb-6 italic">Welcome Back!</h2>
+            <form>
+                <!-- Email Field -->
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-300 text-sm font-semibold mb-1">Username</label>
+                    <input  id="username" placeholder="username"
+                           class="w-full px-4 py-2 rounded-full bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-300 text-sm font-semibold mb-1">Email</label>
+                    <input  id="email" placeholder="username@gmail.com"
+                           class="w-full px-4 py-2 rounded-full bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                </div>
+                <div class="mb-4">
+                    <label for="mobilenumber" class="block text-gray-300 text-sm font-semibold mb-1">Mobile Number</label>
+                    <input  id="mobilenumber" placeholder="contact"
+                           class="w-full px-4 py-2 rounded-full bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                </div>
+                <!-- Password Field -->
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-300 text-sm font-semibold mb-1">Password</label>
+                    <input type="password" id="password" placeholder="Password"
+                           class="w-full px-4 py-2 rounded-full bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    
+                </div>
+
+                <!-- Sign In Button -->
+              <div class="py-2">
+                <button type="submit" class="w-full bg-orange-400 text-white font-semibold py-2 rounded-full hover:bg-orange-500 transition duration-200">
+                    Sign Up
+                </button>
+              </div>
+            </form>
+
+            <!-- OR Divider -->
+            <div class="flex items-center my-4">
+                <hr class="w-full border-gray-500">
+                <span class="px-4 text-gray-300">or continue with</span>
+                <hr class="w-full border-gray-500">
+            </div>
+
+            <!-- Social Login Buttons -->
+            <div class="flex justify-center space-x-4">
+                <button class="p-2 bg-gray-700 rounded-full">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google" class="w-6 h-6">
+                </button>
+                
+                <button class="p-2 bg-gray-700 rounded-full">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook" class="w-6 h-6">
+                </button>
+            </div>
+
+            <!-- Register Link -->
+            <p class="text-gray-300 text-center text-sm mt-4">
+                Already have an account? <a href="login.html" class="text-orange-400 hover:underline">Login now</a>
+            </p>
+        </div>
+
+        <div class="relative w-1/2 rounded-l-3xl overflow-hidden">
+            <img src="/public/pictures/background4.webp" alt="Food Image" class="w-full h-full object-cover opacity-90">
+            <div class="absolute top-4 left-4 text-white font-extrabold text-4xl italic">foodie</div>
+        </div>
+
+    </div>
+</body>
+</html>
