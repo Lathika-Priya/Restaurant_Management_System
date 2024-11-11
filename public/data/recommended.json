@@ -1,0 +1,40 @@
+[
+    {
+        "id": 1,
+        "name": "Chicken Dum Biryani",
+        "price": 299,
+        "description": "A delightfully wholesome dish of aromatic chicken biryani prepared in typical dum style."
+    },
+    {
+        "id": 2,
+        "name": "Chicken 65",
+        "price": 309,
+        "description": "Crispy, juicy, and aromatic bites perfect for any occasion."
+    },
+    {
+        "id": 3,
+        "name": "Boneless Chicken Fry Biryani",
+        "price": 340,
+        "description": "Tender boneless chicken fried and layered with fragrant biryani rice."
+    },
+    {
+        "id": 4,
+        "name": "Chicken Fry Biryani",
+        "price": 309,
+        "description": "Delicious decadent flavoured dum rice layered with fried chicken and indian whole spice cooked in a pot."
+    },
+    {
+        "id":5,
+        "name": "Spl Chicken Fried Rice",
+        "price": 329,
+        "description":"A mouthwatering fusion of fried rice and succulent chicken,packed with flavor and goodness."
+    },
+    {
+        "id": 6,
+        "name":"Sp Pot Biryani [Bone Less]",
+        "price": 339,
+        "description":"Aromatic biryani with tender boneless meat, perfectly balanced spices and fluffy long grains of rice."
+    }
+
+        
+]

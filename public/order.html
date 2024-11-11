@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu with Options</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Menu with Options</h1>
+        <div id="menu" class="space-y-4"></div>
+    </div>
+
+    <script>
+        async function loadMenu() {
+            const response = await fetch('data/recommended.json');
+            const menuItems = await response.json();
+            const menuContainer = document.getElementById('menu');
+
+            menuItems.forEach(item => {
+                const menuItemElement = document.createElement('div');
+                menuItemElement.className = 'p-4 bg-white shadow-md rounded-lg';
+                menuItemElement.innerHTML = `
+                    <h3 class="text-xl font-semibold">${item.name}</h3>
+                    <p class="text-gray-600">${item.description}</p>
+                    <p class="text-gray-800 font-bold">₹${item.price}</p>
+                    <div class="mt-4 flex items-center space-x-4">
+                        <button onclick="decreaseQuantity(${item.id})" class="px-2 py-1 bg-red-500 text-white rounded">-</button>
+                        <span id="quantity-${item.id}" class="text-lg">0</span>
+                        <button onclick="increaseQuantity(${item.id})" class="px-2 py-1 bg-green-500 text-white rounded">+</button>
+                    </div>
+                    <button onclick="saveToEatlist(${item.id})" class="mt-4 px-4 py-2 bg-pink-500 text-white rounded">Save to Eatlist</button>
+                `;
+                menuContainer.appendChild(menuItemElement);
+            });
+        }
+
+        function increaseQuantity(id) {
+            const quantityElement = document.getElementById(`quantity-${id}`);
+            let quantity = parseInt(quantityElement.innerText);
+            quantityElement.innerText = ++quantity;
+        }
+
+        function decreaseQuantity(id) {
+            const quantityElement = document.getElementById(`quantity-${id}`);
+            let quantity = parseInt(quantityElement.innerText);
+            if (quantity > 0) quantityElement.innerText = --quantity;
+        }
+
+        function saveToEatlist(id) {
+            alert(`Item ${id} saved to eatlist!`);
+        }
+
+        loadMenu();
+    </script>
+
+</body>
+</html>
