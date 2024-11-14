@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Paneer 65",
+        "price": 240,
+        "description": "Paneer cubes marinated in South Indian spices and fried until crispy, offering a flavorful, tangy taste."
+    },
+    {
+        "id": 2,
+        "name": "Veg Manchurian",
+        "price": 220,
+        "description": "Vegetable dumplings tossed in a spicy, tangy Manchurian sauce with bell peppers and onions."
+    },
+    {
+        "id": 3,
+        "name": "Chilli Paneer",
+        "price": 250,
+        "description": "Paneer cubes stir-fried in a spicy chili sauce with bell peppers and onions, perfect for spice lovers."
+    },
+    {
+        "id": 4,
+        "name": "Chilli Mushroom",
+        "price": 230,
+        "description": "Fresh mushrooms tossed in a spicy chili sauce with peppers and onions, giving a rich, savory flavor."
+    },
+    {
+        "id": 5,
+        "name": "Baby Corn Manchurian",
+        "price": 240,
+        "description": "Crispy baby corn pieces in a tangy Manchurian sauce, topped with spring onions and peppers."
+    },
+    {
+        "id": 6,
+        "name": "Crispy Corn",
+        "price": 200,
+        "description": "Sweet corn kernels coated in a light batter and fried to a golden crisp, served with a sprinkle of spices."
+    }
+]

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body::before {
+            content: '';
+            background: url('/public/pictures/background3.jpg') center center / cover no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(4px);
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
+    <!-- Fixed Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
+        <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
+        
+        <!-- Hamburger Menu Icon for Mobile -->
+        <button id="menu-toggle" class="text-white block lg:hidden">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        
+        <!-- Navbar Links -->
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/menu">Menu</a></li>
+
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
+        </ul>
+    </nav>
+    <div class="container mx-auto p-4 pt-[120px]">
+
+    <div class="flex justify-center text-black rounded-lg p-6 w-full">
+        <div class="flex flex-col md:flex-row w-full">
+          <!-- Left Side: Profile Image and User Info (Sticky on large screens) -->
+          <div class="w-full md:w-1/3 flex flex-col items-center mb-8 md:mb-0 md:mr-8 lg:sticky lg:top-24"> <!-- Added sticky and top-24 -->
+            <div class="w-60 h-60 bg-gray-300 rounded-full overflow-hidden">
+              <img id="profileImage" src="https://via.placeholder.com/150" alt="Profile" class="object-cover w-full h-full">
+            </div>
+            <label for="uploadImage" class="mt-4 bg-gray-500 hover:bg-blue-400 text-white py-2 px-4 rounded cursor-pointer">
+              Upload Photo
+            </label>
+            <input id="uploadImage" type="file" accept="image/*" class="hidden" onchange="previewImage(event)">
+            
+            <!-- User Info -->
+            <div class="mt-6 text-center">
+              <h2 class="text-gray-300 font-semibold">Username</h2>
+              <p class="text-amber-200">username@example.com</p>
+              <p class="text-green-200">+123 456 7890</p>
+            </div>
+          </div>
+    
+          <!-- Right Side: Saved Address and My Orders -->
+          <div class="w-full md:w-1/2 md:ml-8">
+            <!-- Saved Addresses -->
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold mb-4">Saved Addresses</h3>
+              <ul>
+                <li class="flex justify-between items-center bg-gray-50 p-4 rounded mb-2">
+                  <p>123 Main St, Cityville</p>
+                  <button onclick="deleteAddress(this)" class="text-red-500 hover:text-red-700">Delete</button>
+                </li>
+                <li class="flex justify-between items-center bg-gray-50 p-4 rounded mb-2">
+                  <p>456 Another Ave, Townsville</p>
+                  <button onclick="deleteAddress(this)" class="text-red-500 hover:text-red-700">Delete</button>
+                </li>
+              </ul>
+            </div>
+    
+            <!-- My Orders -->
+            <div>
+              <h3 class="text-xl font-semibold mb-4">My Orders</h3>
+              <ul>
+                <li class="bg-gray-50 p-4 rounded mb-2">
+                  <div class="flex flex-col md:flex-row justify-between mb-2">
+                    <p><strong>Date:</strong> 2024-11-10</p>
+                    <p><strong>Time:</strong> 14:30</p>
+                    <p><strong>Address:</strong> 123 Main St, Cityville</p>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p><strong>Items:</strong> 3 items</p>
+                      <p><strong>Amount:</strong> $45.00</p>
+                    </div>
+                    <p class="text-green-600 font-semibold">Status: Delivered</p>
+                  </div>
+                </li>
+                <li class="bg-gray-50 p-4 rounded mb-2">
+                  <div class="flex flex-col md:flex-row justify-between mb-2">
+                    <p><strong>Date:</strong> 2024-11-05</p>
+                    <p><strong>Time:</strong> 19:45</p>
+                    <p><strong>Address:</strong> 456 Another Ave, Townsville</p>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <p><strong>Items:</strong> 1 item</p>
+                      <p><strong>Amount:</strong> $15.00</p>
+                    </div>
+                    <p class="text-yellow-600 font-semibold">Status: Pending</p>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <script>
+        // Preview the uploaded image
+        function previewImage(event) {
+          const image = document.getElementById('profileImage');
+          image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    
+        // Delete address functionality
+        function deleteAddress(button) {
+          const address = button.closest('li');
+          address.remove();
+        }
+      </script>
+
+</body>
+</html>

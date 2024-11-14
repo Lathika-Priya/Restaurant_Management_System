@@ -1,0 +1,110 @@
+[
+    {
+        "id": 1,
+        "name": "Chicken 65",
+        "price": 250,
+        "description": "Boneless chicken marinated in yogurt and spices, then deep-fried for a spicy, crispy finish with a hint of curry leaves."
+    },
+    {
+        "id": 2,
+        "name": "Chicken Wings",
+        "price": 280,
+        "description": "Juicy chicken wings coated in spices, fried to a crispy texture, and tossed in a tangy, mildly spicy sauce."
+    },
+    {
+        "id": 3,
+        "name": "Chicken Lollipop",
+        "price": 260,
+        "description": "Drumstick chicken coated in a spiced batter and deep-fried, served with a zesty dipping sauce."
+    },
+    {
+        "id": 4,
+        "name": "Chilli Chicken",
+        "price": 300,
+        "description": "Boneless chicken cubes tossed in a spicy, tangy sauce with peppers and onions, an Indo-Chinese favorite."
+    },
+    {
+        "id": 5,
+        "name": "Chicken Fry Boneless",
+        "price": 270,
+        "description": "Boneless chicken pieces marinated in spices and fried to a golden crisp with a tender inside."
+    },
+    {
+        "id": 6,
+        "name": "Chicken 555",
+        "price": 280,
+        "description": "A special chicken dish with a crispy coating, tossed in a unique blend of spices for a spicy kick."
+    },
+    {
+        "id": 7,
+        "name": "Chicken Manchurian",
+        "price": 290,
+        "description": "Crispy fried chicken pieces in a savory Manchurian sauce with bell peppers and onions."
+    },
+    {
+        "id": 8,
+        "name": "Dragon Chicken",
+        "price": 300,
+        "description": "Spicy chicken strips stir-fried with bell peppers, cashews, and a hint of sweetness."
+    },
+    {
+        "id": 9,
+        "name": "Garlic Chicken",
+        "price": 275,
+        "description": "Succulent chicken cooked with garlic, soy sauce, and spices for a rich, savory taste."
+    },
+    {
+        "id": 10,
+        "name": "Crispy Chicken",
+        "price": 260,
+        "description": "Thin chicken strips breaded and fried to a crispy, golden perfection with a soft inside."
+    },
+    {
+        "id": 11,
+        "name": "Prawn Fry",
+        "price": 320,
+        "description": "Fresh prawns marinated in spices and fried until golden, with a crispy coating."
+    },
+    {
+        "id": 12,
+        "name": "Chilly Prawns",
+        "price": 330,
+        "description": "Prawns tossed in a spicy chili sauce with peppers, offering a blend of heat and flavor."
+    },
+    {
+        "id": 13,
+        "name": "Prawn 65",
+        "price": 340,
+        "description": "Prawns marinated in a spiced yogurt mix and fried for a crispy, flavorful starter."
+    },
+    {
+        "id": 14,
+        "name": "Prawn Manchurian",
+        "price": 350,
+        "description": "Crispy prawns coated in a tangy Manchurian sauce with garlic and green onions."
+    },
+    {
+        "id": 15,
+        "name": "Apollo Fish",
+        "price": 340,
+        "description": "Boneless fish marinated in a spicy mix and stir-fried with curry leaves for a signature flavor."
+    },
+    {
+        "id": 16,
+        "name": "Fish Fry",
+        "price": 320,
+        "description": "Fish fillets marinated in spices and fried until crispy, served with lemon and onions."
+    },
+    {
+        "id": 17,
+        "name": "Fish 65",
+        "price": 330,
+        "description": "Spicy fried fish in South Indian style, with a crispy coating and a tender inside."
+    },
+    {
+        "id": 18,
+        "name": "Chilli Egg",
+        "price": 240,
+        "description": "Boiled egg pieces stir-fried in a spicy chili sauce with bell peppers and onions."
+    }
+]

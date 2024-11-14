@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "Veg Steamed Momos",
+        "price": 150,
+        "description": "Soft steamed dumplings stuffed with a savory vegetable filling, served with spicy chili sauce."
+    },
+    {
+        "id": 2,
+        "name": "Chicken Steamed Momos",
+        "price": 180,
+        "description": "Juicy steamed dumplings filled with minced chicken and herbs, paired with a spicy dipping sauce."
+    },
+    {
+        "id": 3,
+        "name": "Fried Momos",
+        "price": 170,
+        "description": "Crispy fried dumplings with a choice of vegetable or chicken filling, served with chili sauce."
+    },
+    {
+        "id": 4,
+        "name": "Tandoori Momos",
+        "price": 200,
+        "description": "Dumplings marinated in tandoori spices and grilled for a smoky, flavorful twist on a classic."
+    },
+    {
+        "id": 5,
+        "name": "Margherita Pizza",
+        "price": 250,
+        "description": "Classic pizza topped with tomato sauce, mozzarella cheese, and fresh basil leaves."
+    },
+    {
+        "id": 6,
+        "name": "Pepperoni Pizza",
+        "price": 300,
+        "description": "Pizza topped with a generous layer of pepperoni slices and mozzarella cheese."
+    },
+    {
+        "id": 7,
+        "name": "Veggie Supreme Pizza",
+        "price": 280,
+        "description": "Loaded with bell peppers, onions, olives, and mushrooms on a cheesy base with tomato sauce."
+    },
+    {
+        "id": 8,
+        "name": "Classic Chicken Burger",
+        "price": 220,
+        "description": "Grilled chicken patty with lettuce, tomato, and mayo in a soft burger bun."
+    },
+    {
+        "id": 9,
+        "name": "Cheese Burger",
+        "price": 200,
+        "description": "A classic beef or chicken patty with melted cheese, lettuce, and a touch of ketchup."
+    },
+    {
+        "id": 10,
+        "name": "Spicy Paneer Burger",
+        "price": 210,
+        "description": "Spicy grilled paneer with lettuce, tomato, and spicy mayo in a sesame bun."
+    },
+    {
+        "id": 11,
+        "name": "Veg Spring Rolls",
+        "price": 160,
+        "description": "Crispy rolls filled with seasoned vegetables and served with a tangy dip."
+    },
+    {
+        "id": 12,
+        "name": "Chicken Spring Rolls",
+        "price": 180,
+        "description": "Spring rolls stuffed with chicken and veggies, deep-fried to a golden crisp."
+    },
+    {
+        "id": 13,
+        "name": "Hakka Noodles",
+        "price": 200,
+        "description": "Stir-fried noodles with vegetables, tossed in soy sauce and garlic for a classic flavor."
+    },
+    {
+        "id": 14,
+        "name": "Schezwan Noodles",
+        "price": 220,
+        "description": "Spicy noodles tossed with mixed vegetables and a bold Schezwan sauce."
+    },
+    {
+        "id": 15,
+        "name": "Chicken Chow Mein",
+        "price": 250,
+        "description": "Stir-fried noodles with tender chicken pieces and vegetables in a savory sauce."
+    }
+]

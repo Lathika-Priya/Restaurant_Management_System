@@ -3,58 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu with Options</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Responsive Profile Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body::before {
+            content: '';
+            background: url('./pictures/background3.jpg') center center / cover no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(4px);
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
+    <!-- Fixed Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
+        <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
+        
+        <!-- Hamburger Menu Icon for Mobile -->
+        <button id="menu-toggle" class="text-white block lg:hidden">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        
+        <!-- Navbar Links -->
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/menu">Menu</a></li>
 
-    <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">Menu with Options</h1>
-        <div id="menu" class="space-y-4"></div>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+
+        </ul>
+    </nav>
+    <div class="container mx-auto p-4 pt-[120px]">
+        
+        <section class="text-center py-10">
+            <h2 class="text-4xl font-bold mb-6">Delicious Menu</h2>
+            <p class="text-xl text-gray-300">Special Selection</p>
+        </section>
+    
+        <div id="menu-container" class=" bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+
+        </div>
     </div>
-
     <script>
-        async function loadMenu() {
-            const response = await fetch('data/recommended.json');
-            const menuItems = await response.json();
-            const menuContainer = document.getElementById('menu');
+         document.getElementById('menu-toggle').addEventListener('click', () => {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
 
-            menuItems.forEach(item => {
-                const menuItemElement = document.createElement('div');
-                menuItemElement.className = 'p-4 bg-white shadow-md rounded-lg';
-                menuItemElement.innerHTML = `
-                    <h3 class="text-xl font-semibold">${item.name}</h3>
-                    <p class="text-gray-600">${item.description}</p>
-                    <p class="text-gray-800 font-bold">₹${item.price}</p>
-                    <div class="mt-4 flex items-center space-x-4">
-                        <button onclick="decreaseQuantity(${item.id})" class="px-2 py-1 bg-red-500 text-white rounded">-</button>
-                        <span id="quantity-${item.id}" class="text-lg">0</span>
-                        <button onclick="increaseQuantity(${item.id})" class="px-2 py-1 bg-green-500 text-white rounded">+</button>
+            let cart = [];
+            let eatList = [];
+    
+    // Fetch menu data from JSON and render items
+    fetch(' ./data/breakfast.json')
+        .then(response => response.json())
+        .then(data => {
+            const menuContainer = document.getElementById('menu-container');
+            data.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('bg-black', 'p-6', 'rounded-lg', 'shadow-lg', 'flex', 'items-center');
+                
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-24 h-24 rounded-lg mr-6">
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-semibold">${item.name} 
+                            ${item.label ? `<span class="text-sm text-yellow-500 ml-2">${item.label}</span>` : ''}
+                        </h3>
+                        <p class="text-gray-400">${item.description}</p>
+
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-xl font-bold">$${item.price.toFixed(2)}</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg" onclick="adjustQuantity('${item.id}', -1)">-</button>
+                                <span id="quantity-${item.id}" class="px-2">0</span>
+                                <button class="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg" onclick="adjustQuantity('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex space-x-4">
+                            <button class="bg-yellow-500 px-4 py-2 rounded-lg" onclick="addToCart('${item.name}', ${item.price}, '${item.id}')">Add to Cart</button>
+                            <button class="bg-gray-700 px-4 py-2 rounded-lg" onclick="saveToEatList('${item.name}')">Save to Eat List</button>
+                        </div>
+
                     </div>
-                    <button onclick="saveToEatlist(${item.id})" class="mt-4 px-4 py-2 bg-pink-500 text-white rounded">Save to Eatlist</button>
+
                 `;
-                menuContainer.appendChild(menuItemElement);
+                menuContainer.appendChild(itemElement);
             });
+        })
+        .catch(error => console.error('Error loading menu data:', error));
+    
+    // Adjust quantity of items
+    function adjustQuantity(itemId, change) {
+        const quantityElement = document.getElementById(`quantity-${itemId}`);
+        let quantity = parseInt(quantityElement.innerText) || 1;
+        quantity = Math.max(1, quantity + change); // Ensure quantity doesn't go below 1
+        quantityElement.innerText = quantity;
+    }
+    
+    // Add item to cart
+    function addToCart(itemName, price, itemId) {
+        const quantity = parseInt(document.getElementById(`quantity-${itemId}`).innerText) || 1;
+        cart.push({ itemName, price, quantity });
+        alert(`${itemName} added to cart with quantity ${quantity}`);
+        console.log("Cart:", cart);
+    }
+    
+    // Save item to Eat List
+    function saveToEatList(itemName) {
+        if (!eatList.includes(itemName)) {
+            eatList.push(itemName);
+            alert(`${itemName} saved to Eat List`);
+            console.log("Eat List:", eatList);
+        } else {
+            alert(`${itemName} is already in your Eat List`);
         }
+    }
+    
+</script>
 
-        function increaseQuantity(id) {
-            const quantityElement = document.getElementById(`quantity-${id}`);
-            let quantity = parseInt(quantityElement.innerText);
-            quantityElement.innerText = ++quantity;
-        }
 
-        function decreaseQuantity(id) {
-            const quantityElement = document.getElementById(`quantity-${id}`);
-            let quantity = parseInt(quantityElement.innerText);
-            if (quantity > 0) quantityElement.innerText = --quantity;
-        }
-
-        function saveToEatlist(id) {
-            alert(`Item ${id} saved to eatlist!`);
-        }
-
-        loadMenu();
-    </script>
-
+  
 </body>
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Background with Rotating Square</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body::before {
+            content: '';
+            background: url('/pictures/menubg.png') center center / cover no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(4px);
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen text-white">
+    <!-- Fixed Navbar -->
+    <div id="menuContainer" class="menu-container"></div>
+
+<p>hello</p>
+    <script>
+      async function fetchMenuItems() {
+  try {
+    const response = await fetch('/api/menuitems'); // Make sure this URL matches the server route
+    const menuItems = await Menuitem.find();
+
+    const menuContainer = document.getElementById('menuContainer');
+    menuContainer.innerHTML = ''; 
+
+    menuItems.forEach(item => {
+      const itemElement = document.createElement('div');
+      itemElement.className = 'menu-item';
+      itemElement.innerHTML = `
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <p><strong>Price:</strong> $${item.price}</p>
+      `;
+      menuContainer.appendChild(itemElement);
+    });
+  } catch (error) {
+    console.error('Error fetching menu items:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', fetchMenuItems);
+
+    </script>
+    </body>
+    </html>
+

@@ -1,0 +1,24 @@
+{
+    "id": 3,
+    "name": "Boneless Chicken Fry Biryani",
+    "price": 340,
+    "description": "Tender boneless chicken fried and layered with fragrant biryani rice.",
+    "category" : "recommended",
+    "imageURL" :
+},
+{
+    "id": 4,
+    "name": "Chicken Fry Biryani",
+    "price": 309,
+    "description": "Delicious decadent flavoured dum rice layered with fried chicken and indian whole spice cooked in a pot.",
+    "category" : "recommended",
+    "imageURL" :
+},
+{
+    "id":5,
+    "name": "Spl Chicken Fried Rice",
+    "price": 329,
+    "description":"A mouthwatering fusion of fried rice and succulent chicken,packed with flavor and goodness.",
+    "category" : "recommended",
+    "imageURL" :
+},

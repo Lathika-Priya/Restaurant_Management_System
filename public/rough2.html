@@ -52,52 +52,53 @@
                 <hr class="w-1/5 border-gray-500">
             </div>
         </div>
-  <!-- Fixed Navbar -->
-    <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-20 "></div>
-</div>
+        <div id="menu-recommended" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
 
-<script>
-   document.getElementById('menu-toggle').addEventListener('click', () => {
+        <!-- Breakfast Section -->
+        <div class="text-center mb-10 mt-12">
+            <div class="flex items-center justify-center">
+                <hr class="w-1/5 border-gray-500">
+                <h3 class="px-4 text-2xl font-bold text-gray-900">BREAKFAST</h3>
+                <hr class="w-1/5 border-gray-500">
+            </div>
+        </div>
+        <div id="menu-breakfast" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </div>
+
+    <script>
+        // Toggle mobile menu visibility
+        document.getElementById('menu-toggle').addEventListener('click', () => {
             const menu = document.getElementById('menu');
             menu.classList.toggle('hidden');
         });
-    async function fetchMenuItems() {
-      try {
-        const response = await fetch('/api/menuitems');
-        if (!response.ok) throw new Error('Network response was not ok');
-        
-        const menuItems = await response.json();
-        console.log(menuItems); // Log fetched data for debugging
-  
-        const menuContainer = document.getElementById('menuContainer');
-        menuContainer.innerHTML = '';
-  
-        if (menuItems.length === 0) {
-          menuContainer.innerHTML = '<p>No menu items available.</p>';
-        } else {
-          menuItems.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'menu-item';
-            itemElement.innerHTML = `
-              <div class="menu-item">
-                <img src="${item.imageURL}" alt="${item.name}" class="w-40 h-40 rounded-full mx-auto mb-4">
-                <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
-                <p class="text-sky-950 font-semibold">$${item.price}</p>
-                <p class="text-black font-medium text-sm mt-2">${item.description}</p>
-              </div>
-            `;
-            menuContainer.appendChild(itemElement);
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching menu items:', error);
-        document.getElementById('menuContainer').innerHTML = '<p>Error loading menu items.</p>';
-      }
-    }
-  
-    document.addEventListener('DOMContentLoaded', fetchMenuItems);
-  </script>
-  
-    </body>
-    </html>
 
+        async function loadMenu(url, containerId) {
+            try {
+                const response = await fetch(url);
+                const menuItems = await response.json();
+                const menuContainer = document.getElementById(containerId);
+
+                menuItems.forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.className = 'text-center';
+                    menuItemElement.innerHTML = `
+                        <div class="text-center">
+                            <img src="${item.imageURL}" alt="${item.name}" class="w-24 h-24 rounded-full mx-auto mb-4">
+                            <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
+                            <p class="text-sky-950 font-semibold">$${item.price}</p>
+                            <p class="text-black font-medium text-sm mt-2">${item.description}</p>
+                        </div>
+                    `;
+                    menuContainer.appendChild(menuItemElement);
+                });
+            } catch (error) {
+                console.error('Error loading menu:', error);
+            }
+        }
+
+        // Load "Recommended" and "Breakfast" menus into their respective containers
+        loadMenu('./data/recommended.json', 'menu-recommended');
+        loadMenu('./data/breakfast.json', 'menu-breakfast');
+    </script>
+</body>
+</html>
