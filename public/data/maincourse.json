@@ -1,4 +1,6 @@
-{
+[
+    
+    {
     "id": 3,
     "name": "Boneless Chicken Fry Biryani",
     "price": 340,
@@ -21,4 +23,5 @@
     "description":"A mouthwatering fusion of fried rice and succulent chicken,packed with flavor and goodness.",
     "category" : "recommended",
     "imageURL" :
-},
+}
+]
