@@ -3,13 +3,21 @@ const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config(); // Load environment variables from .env
 
-// Import models
-const Order = require('./models/order');
-const Customer = require('./models/customer');
-const Reservation = require('./models/reservation');
-const Employee = require('./models/employees');
 // Initialize the express app
 const app = express();
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+const bodyParser = require('body-parser');
+
+// Middleware to parse JSON body data
+app.use(express.urlencoded({ extended: true })); // For form data
+app.use(express.json());
+
+
+
 
 // MongoDB connection using environment variable
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -28,6 +36,40 @@ app.get('/reservation', (req, res) => res.sendFile(path.resolve('public/reservat
 app.get('/login', (req, res) => res.sendFile(path.resolve('public/login.html')));
 app.get('/about-us', (req, res) => res.sendFile(path.resolve('public/about-us.html')));
 app.get('/signup', (req, res) => res.sendFile(path.resolve('public/signup.html')));
+
+// Import models
+const Order = require('./models/order.js');
+const User = require('./models/user');
+const Reservation = require('./models/reservation');
+const Employee = require('./models/employee');
+
+//Import routes
+const userRoutes = require('./routes/userRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+//const reservationRoutes = require('./routes/reservationRoutes');
+const menuRoutes = require('./routes/menuRoutes');
+
+const logger = require('./middleware/loggerMiddleware');
+const errorHandler = require('./middleware/errorHandler');
+
+
+
+// Use routes
+app.use('/api/user', userRoutes);  // e.g., /api/user/create, /api/user/login
+app.use('/api/order', orderRoutes);  // e.g., /api/order/create, /api/order/user/:userId
+//app.use('/api/reservation', reservationRoutes);  // e.g., /api/reservation/create
+app.use('/api/menu', menuRoutes);  // e.g., /api/menu/add, /api/menu/update/:itemId
+
+const userController = require('./controllers/userController.js');
+
+// Middleware for logging
+app.use(logger);
+
+// Middleware to parse incoming JSON data
+app.use(express.json());
+
+// Error-handling middleware should be used last, after all other routes
+app.use(errorHandler);
 
 // Create an order
 app.post('/order', async (req, res) => {
@@ -49,23 +91,23 @@ app.post('/order', async (req, res) => {
 });
 
 // Create a new customer
-app.post('/customer', async (req, res) => {
-    const { name, email, phone, address } = req.body;
+// app.post('/customer', async (req, res) => {
+//     const { name, email, phone, address } = req.body;
 
-    try {
-        const newCustomer = new Customer({
-            name,
-            email,
-            phone,
-            address
-        });
+//     try {
+//         const newCustomer = new Customer({
+//             name,
+//             email,
+//             phone,
+//             address
+//         });
 
-        await newCustomer.save();
-        res.status(201).json(newCustomer);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
+//         await newCustomer.save();
+//         res.status(201).json(newCustomer);
+//     } catch (err) {
+//         res.status(400).json({ error: err.message });
+//     }
+// });
 
 // Create a new reservation
 app.post('/reservation', async (req, res) => {

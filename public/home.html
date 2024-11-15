@@ -92,7 +92,7 @@
             <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="#">My Cart</a></li>
 
             <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+            <li id="user-info" class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150"></li>
         </ul>
     </nav>
 
@@ -175,6 +175,35 @@
     });
         // Start the text rotation every 3 seconds
         setInterval(changeText, 3000);
+
+        // Check if the user is logged in (e.g., using localStorage or cookies)
+    const token = localStorage.getItem('token');  // or check cookies if you're using them
+    const userInfoElement = document.getElementById('user-info');
+
+    if (token) {
+        // If the user is logged in, get the username from the token (or a separate storage)
+        const username = localStorage.getItem('username'); // Assuming you store the username in localStorage during login/signup
+        
+        // Update the navbar with the username and a logout button
+        userInfoElement.innerHTML = `
+            <span>Welcome, ${username}</span>
+            <button id="logout-btn" class="text-white font-bold text-[14px] uppercase leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md">Logout</button>
+        `;
+        
+        // Handle logout
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            // Clear the token and username from storage
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            
+            // Redirect to the login page
+            window.location.href = '/login';
+        });
+    } else {
+        // If the user is not logged in, show the Login/Signup link
+        userInfoElement.innerHTML = '<a href="/login" class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md">Login/Signup</a>';
+    }
+
     </script>
 
 </body>
