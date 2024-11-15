@@ -3,43 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Background with Rotating Square</title>
+    <title>Responsive Background with Rotating Square</title>
     <script src="https://cdn.tailwindcss.com"></script>
-        <style>
-            body::before {
-                content: '';
-                background: url('/pictures/menubg.png') center center / cover no-repeat;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                filter: blur(4px);
-                z-index: -1;
-                background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
-            }
-        </style>
+    <style>
+        body::before {
+            content: '';
+            background: url('/pictures/menubg.png') center center / cover no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(4px);
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+        }
+    </style>
 </head>
 <body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
     <!-- Fixed Navbar -->
-    <nav class="fixed top-0 left-0 w-full h-[100px] bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center z-10">
-        <div class="logo h-[80px] float-left text-[24px] font-bold uppercase p-[22px_26px] text-white">WEBDE</div>
-        <ul class="list-none flex ml-auto m-0 p-0">
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="#">My Cart</a></li>
-
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+    <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
+        <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
+        
+        <!-- Hamburger Menu Icon for Mobile -->
+        <button id="menu-toggle" class="text-white block lg:hidden">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        
+        <!-- Navbar Links -->
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
         </ul>
     </nav>
-    <div class="container mx-auto p-6 pt-[120px]">
 
-    <div class="flex items-center justify-center min-h-screen text-white">
-    <div class="w-full max-w-6xl p-8 rounded-lg shadow-lg">
-        
-        <!-- Title Section with Lines -->
+    <div class="container mx-auto p-4 pt-[120px]">
+        <!-- Recommended Section -->
         <div class="text-center mb-10">
             <div class="flex items-center justify-center">
                 <hr class="w-1/5 border-gray-500">
@@ -47,83 +52,52 @@
                 <hr class="w-1/5 border-gray-500">
             </div>
         </div>
-
-        <!-- Menu Container -->
-        <div id="menu" class="grid grid-cols-4 gap-8"></div>
-
-
-    <script>
-        async function loadMenu() {
-            const response = await fetch('./data/recommended.json');
-            const menuItems = await response.json();
-            const menuContainer = document.getElementById('menu');
-
-            menuItems.forEach(item => {
-                const menuItemElement = document.createElement('div');
-                menuItemElement.className = 'text-center';
-                menuItemElement.innerHTML = `
-                    <div class="text-center">
-                        <img src="https://via.placeholder.com/100" alt="${item.name}" class="w-24 h-24 rounded-full mx-auto mb-4">
-                        <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
-                        <p class="text-sky-950 font-semibold">$${item.price}</p>
-                        <p class="text-black font-medium text-sm mt-2">${item.description}</p>
-                    </div>
-                `;
-                menuContainer.appendChild(menuItemElement);
-            });
-        }
-
-        loadMenu();
-    </script>
-
-
-            <div class="text-center mb-10">
-                <div class="flex items-center justify-center">
-                    <hr class="w-1/5 border-gray-500">
-                    <h3 class="px-4 text-2xl font-bold text-gray-900">BREAKFAST</h3>
-                    <hr class="w-1/5 border-gray-500">
-                </div>
-            </div>
-            <div class="grid grid-cols-4 gap-8 text-white">
-            
-                <!-- Menu Item -->
-                <div class="text-center">
-                    <img src="https://via.placeholder.com/100" alt="chapathi" class=" h-24 rounded-full mx-auto mb-4">
-                    <h2 class="text-xl font-bold text-orange-950">Chapathi</h2>
-                    <p class="text-sky-950 font-semibold">$18.99</p>
-                    <p class="text-black font-medium text-sm mt-2">A delightfully wholesome combo with soft chapathis of 2,served along mouthwatering gravy.</p>
-                </div>
-
-                <div class="text-center">
-                    <img src="https://via.placeholder.com/100" alt="puri" class=" h-24 rounded-full mx-auto mb-4">
-                    <h2 class="text-xl font-bold text-orange-950">Puri</h2>
-                    <p class="text-sky-950 font-semibold">$20</p>
-                    <p class="text-black font-medium text-sm mt-2">A wholesome combination of puri served with flavourful gravy.</p>
-                </div>
-
-
-
-                <div class="text-center">
-                    <img src="https://via.placeholder.com/100" alt="2parotta" class=" h-24 rounded-full mx-auto mb-4">
-                    <h2 class="text-xl font-bold text-orange-950">2 Parotta</h2>
-                    <p class="text-sky-950 font-semibold">$20</p>
-                    <p class="text-black font-medium text-sm mt-2">A delightfully wholesome combo with delectable parota, served along with flavourful veg korma</p>
-                </div>
-
-                
-                <div class="text-center">
-                    <img src="https://via.placeholder.com/100" alt="uttapam" class=" h-24 rounded-full mx-auto mb-4">
-                    <h2 class="text-xl font-bold text-orange-950">Uttapam</h2>
-                    <p class="text-sky-950 font-semibold">$20</p>
-                    <p class="text-black font-medium text-sm mt-2">Fluffy and flavorful, this savory Indian pancakes bursts with delightful veggie fillings..</p>
-                </div>
-            </div>
-        </div>
+  <!-- Fixed Navbar -->
+    <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-20 "></div>
 </div>
-        </div>
-    </div>
-</body>
-</html>
 
+<script>
+   document.getElementById('menu-toggle').addEventListener('click', () => {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
+    async function fetchMenuItems() {
+      try {
+        const response = await fetch('/api/menuitems');
+        if (!response.ok) throw new Error('Network response was not ok');
+        
+        const menuItems = await response.json();
+        console.log(menuItems); // Log fetched data for debugging
+  
+        const menuContainer = document.getElementById('menuContainer');
+        menuContainer.innerHTML = '';
+  
+        if (menuItems.length === 0) {
+          menuContainer.innerHTML = '<p>No menu items available.</p>';
+        } else {
+          menuItems.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'menu-item';
+            itemElement.innerHTML = `
+              <div class="menu-item">
+                <img src="${item.imageURL}" alt="${item.name}" class="w-40 h-40 rounded-full mx-auto mb-4">
+                <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
+                <p class="text-sky-950 font-semibold">$${item.price}</p>
+                <p class="text-black font-medium text-sm mt-2">${item.description}</p>
+              </div>
+            `;
+            menuContainer.appendChild(itemElement);
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching menu items:', error);
+        document.getElementById('menuContainer').innerHTML = '<p>Error loading menu items.</p>';
+      }
+    }
+  
+    document.addEventListener('DOMContentLoaded', fetchMenuItems);
+  </script>
+  
     </body>
     </html>
+

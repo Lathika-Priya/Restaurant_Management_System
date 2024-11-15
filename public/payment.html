@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+     body::before {
+            content: '';
+            background: url('/public/pictures/background4.webp') center center / cover no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(4px);
+            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+        }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="">
+    <button onclick="goTocart()" class="flex justify-center w-40 rounded-3xl h-8 items-center text-white border-gray-900 bg-teal-800">Go Back to Cart
+
+    </button>
+</div>
+  <!-- Main Container -->
+  <div class="container mx-auto my-8 p-4 lg:p-8 shadow-lg rounded-lg">
+
+    <!-- Page Title -->
+    <h1 class="text-2xl font-bold text-gray-300 mb-6">Payment !</h1>
+
+    <!-- Payment Page Layout -->
+    <div class="lg:flex lg:space-x-8 flex justify-center items-center">
+      
+      <!-- Total Amount Section -->
+      <div class="lg:w-1/3  p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4 text-red-200">Order Summary</h2>
+
+        <p class="text-lg text-yellow-100">Total Amount:</p>
+        <p class="text-2xl font-bold text-green-600">$<span id="totalAmount">0.00</span></p>
+        <p class="mt-4 text-sm text-sky-300">Please ensure the details entered are correct for seamless delivery.</p>
+      </div>
+
+      <!-- Payment Form Section -->
+      <div class="lg:w-2/3 mt-8 lg:mt-0">
+        <form class="space-y-6">
+          
+          <!-- Full Name -->
+          <div>
+            <label for="fullName" class="block text-gray-700 font-semibold">Full Name</label>
+            <input type="text" id="fullName" class="w-1/2 mt-1 p-2 border bg-stone-500 border-gray-900 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-100" placeholder="Enter your full name" required>
+          </div>
+          
+          <!-- Mobile Number -->
+          <div>
+            <label for="mobileNumber" class="block text-gray-700 font-semibold">Mobile Number</label>
+            <input type="tel" id="mobileNumber" class="w-1/4 mt-1 p-2 border bg-stone-500 border-gray-900 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-100" placeholder="Enter your mobile number" required>
+          </div>
+
+          <!-- Address Heading -->
+          <h3 class="text-lg font-semibold text-gray-800">Address</h3>
+
+          <!-- Street and Door No -->
+          <div>
+            <label for="street" class="block text-gray-700 font-semibold">Street and Door No</label>
+            <input type="text" id="street" class="w-full mt-1 p-2 border bg-stone-500 border-gray-900 rounded-3xl  focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter street and door number" required>
+          </div>
+
+          <!-- Location -->
+          <div>
+            <label for="location" class="block text-gray-700 font-semibold">Location</label>
+            <input type="text" id="location" class="w-full mt-1 p-2 border bg-stone-500 border-gray-900 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter location" required>
+          </div>
+        <div>
+            <label for="location" class="block text-gray-700 font-semibold">Landmark</label>
+            <input type="text" id="landmark" class="w-full mt-1 p-2 border bg-stone-500 border-gray-900 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter landmark" required>
+          </div>
+          <!-- Pincode -->
+          <div>
+            <label for="pincode" class="block text-gray-700 font-semibold">Pincode</label>
+            <input type="text" id="pincode" class="w-1/4 mt-1 p-2 border bg-stone-500 border-gray-900 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter pincode" required>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="flex justify-center">
+            <button type="submit" class="w-1/4 flex justify-center py-2 mt-6 bg-blue-300 text-white font-bold rounded-md hover:bg-stone-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Proceed to Payment
+              </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript to Load Total Amount from Local Storage -->
+  <script>
+    // Retrieve the total amount from localStorage
+    const totalAmount = localStorage.getItem('totalAmount');
+    if (totalAmount) {
+      document.getElementById('totalAmount').innerText = totalAmount;
+    } else {
+      document.getElementById('totalAmount').innerText = '0.00';
+    }
+
+    function goTocart() {
+            window.location.href = "mycart.html";
+    }
+  </script>
+</body>
+</html>

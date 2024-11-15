@@ -81,28 +81,35 @@
         }
     </style>
 </head>
-<body class="font-sans m-0 p-0">
-
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
     <!-- Fixed Navbar -->
-    <nav class="fixed top-0 left-0 w-full h-[100px] bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center z-10">
-        <div class="logo h-[80px] float-left text-[24px] font-bold uppercase p-[22px_26px] text-white">WEBDE</div>
-        <ul class="list-none flex ml-auto m-0 p-0">
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/menu">Menu</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="#">My Cart</a></li>
-
-            <li><a class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li id="user-info" class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150"></li>
+    <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
+        <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
+        
+        <!-- Hamburger Menu Icon for Mobile -->
+        <button id="menu-toggle" class="text-white block lg:hidden">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        
+        <!-- Navbar Links -->
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
         </ul>
     </nav>
-
     <!-- Fixed Background Image -->
     <div class="fixed-background" id="background-image" style="background-image: url('/pictures/bg1.avif');"></div>
 
     <!-- Text and Button over Fixed Background -->
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
         <h1 class="fade-in-text" id="carousel-text">Join for Delicious Food!</h1>
-        <button class="order-btn text-2" id="order-btn" onclick="window.location.href='/order'">Order Online</button>
+        <button class="order-btn text-2" id="order-btn" >Order Online</button>
 
     </div>
 
@@ -121,8 +128,14 @@
             </div>
         </a>
     </div>
-   
+    <div>
+        
+    </div>
     <script>
+         document.getElementById('menu-toggle').addEventListener('click', () => {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
         // Array of text corresponding to each "slide"
         const texts = [
             "Flavours Inspired By Seasons",

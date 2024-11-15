@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config(); // Load environment variables from .env
+const cors = require('cors');
+
 
 // Initialize the express app
 const app = express();
@@ -27,14 +29,17 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Serve static files from the "public" folder
 app.use(express.static(path.resolve('public')));
 
+  
 // Routes for pages
 app.get('/', (req, res) => res.redirect('/home'));
 app.get('/home', (req, res) => res.sendFile(path.resolve('public/home.html')));
 app.get('/menu', (req, res) => res.sendFile(path.resolve('public/menu.html')));
 app.get('/order', (req, res) => res.sendFile(path.resolve('public/order.html')));
+app.get('/cart', (req, res) => res.sendFile(path.resolve('public/mycart.html')));
+
 app.get('/reservation', (req, res) => res.sendFile(path.resolve('public/reservation.html')));
 app.get('/login', (req, res) => res.sendFile(path.resolve('public/login.html')));
-app.get('/about-us', (req, res) => res.sendFile(path.resolve('public/about-us.html')));
+app.get('/about-us', (req, res) => res.sendFile(path.resolve('public/aboutus.html')));
 app.get('/signup', (req, res) => res.sendFile(path.resolve('public/signup.html')));
 
 // Import models
@@ -145,7 +150,33 @@ app.post('/employee', async (req, res) => {
         res.status(400).json({ error: err.message });
     }
 });
-
+app.post('/menu', async (req, res) => {
+    try {
+      const newItem = new Menuitem({
+        id: req.body.id,
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        category : req.body.category,
+        imageURL: req.body.imageURL
+      });
+      await newItem.save();
+      res.status(201).json(newItem);
+    } catch (error) {
+      res.status(500).json({ message: 'Error adding menu item' });
+    }
+  });
+  app.get('/api/menuitems', async (req, res) => {
+    try {
+      const menuItems = await Menuitem.find();
+      console.log("Fetched menu items:", menuItems); // Logs menu items to console
+      res.json(menuItems);
+    } catch (error) {
+      console.error('Error fetching menu items:', error);
+      res.status(500).json({ message: 'Error fetching menu items' });
+    }
+  });
+  
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -3,38 +3,204 @@
         "id": 1,
         "name": "Chicken Dum Biryani",
         "price": 299,
-        "description": "A delightfully wholesome dish of aromatic chicken biryani prepared in typical dum style."
+        "description": "A delightfully wholesome dish of aromatic chicken biryani prepared in typical dum style.",
+        "category": "Biryani",
+        "imageURL": "/pictures/chickendumbiryani.jpeg"
     },
     {
         "id": 2,
         "name": "Chicken 65",
         "price": 309,
-        "description": "Crispy, juicy, and aromatic bites perfect for any occasion."
+        "description": "Crispy, juicy, and aromatic bites perfect for any occasion.",
+        "category": "Appetizer",
+        "imageURL": "/pictures/chicken65.jpeg"
     },
     {
         "id": 3,
-        "name": "Boneless Chicken Fry Biryani",
-        "price": 340,
-        "description": "Tender boneless chicken fried and layered with fragrant biryani rice."
+        "name": "Sp Pot Biryani [Bone Less]",
+        "price": 339,
+        "description": "Aromatic biryani with tender boneless meat, perfectly balanced spices and fluffy long grains of rice.",
+        "category": "Biryani",
+        "imageURL": "/pictures/splpotbiryani.jpeg"
     },
     {
         "id": 4,
-        "name": "Chicken Fry Biryani",
-        "price": 309,
-        "description": "Delicious decadent flavoured dum rice layered with fried chicken and indian whole spice cooked in a pot."
+        "name": "Special Veg Fried Rice",
+        "price": 279,
+        "description": "Spicy and flavorful rice stir-fried with mixed vegetables, seasoned with aromatic spices, making a perfect vegetarian delight.",
+        "category": "Rice",
+        "imageURL": "/pictures/splvegfriedrice.jpeg"
     },
     {
-        "id":5,
-        "name": "Spl Chicken Fried Rice",
-        "price": 329,
-        "description":"A mouthwatering fusion of fried rice and succulent chicken,packed with flavor and goodness."
+        "id": 5,
+        "name": "Spl Pot Biryani",
+        "price": 250,
+        "description": "Aromatic basmati rice cooked with special spices, layered with tender vegetables and spices in a traditional pot.",
+        "category": "Biryani",
+        "imageURL": "/pictures/splpotbiryani.jpeg"
     },
     {
         "id": 6,
-        "name":"Sp Pot Biryani [Bone Less]",
-        "price": 339,
-        "description":"Aromatic biryani with tender boneless meat, perfectly balanced spices and fluffy long grains of rice."
-    }
-
+        "name": "Paneer Butter Masala",
+        "price": 200,
+        "description": "Rich and creamy dish made with soft paneer cubes simmered in a buttery, mildly spiced tomato-based gravy.",
+        "category": "Main Course",
+        "imageURL": "/pictures/paneerbuttermasala.avif"
+    },
+    {
+        "id": 7,
+        "name": "Chicken Lollypop",
+        "price": 180,
+        "description": "Spicy, crispy fried chicken wings coated with flavorful spices, served with tangy dipping sauce.",
+        "category": "Appetizer",
+        "imageURL": "/pictures/chickenlollypop.jpeg"
+    },
+    {
+        "id": 8,
+        "name": "Chilli Chicken",
+        "price": 220,
+        "description": "Succulent chicken pieces tossed in a spicy chili sauce with bell peppers and onions, a favorite Indo-Chinese dish.",
+        "category": "Appetizer",
+        "imageURL": "/pictures/chillichicken.jpeg"
+    },
+    
+        {
+            "id": 9,
+            "name": "Puri",
+            "price": 60,
+            "description": "Fluffy and deep-fried Indian bread served with a side of spiced potato curry.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/puri.jpeg"
+        },
+        {
+            "id": 10,
+            "name": "Chapathi",
+            "price": 50,
+            "description": "Soft, whole-wheat flatbread served with a side of vegetable curry or chutney.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/chapathi.jpeg"
+        },
+        {
+            "id": 11,
+            "name": "Parota",
+            "price": 70,
+            "description": "Layered flatbread made with flour, served with a spicy vegetable kurma.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/parota.jpeg"
+        },
+        {
+            "id": 12,
+            "name": "Uthapam",
+            "price": 80,
+            "description": "Thick dosa topped with onions, tomatoes, and chilies, served with chutney and sambhar.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/uttapam.jpeg"
+        },
+        {
+            "id": 13,
+            "name": "Masala Idly",
+            "price": 70,
+            "description": "Soft idlis tossed in a spicy masala mix with onions and curry leaves.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/masalaidly.jpeg"
+        },
+        {
+            "id": 14,
+            "name": "Ghee Karam Idly",
+            "price": 75,
+            "description": "Idlis coated with ghee and a spicy karam powder, adding extra flavor and richness.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/gheekaramidly.jpeg"
+        },
+        {
+            "id": 15,
+            "name": "Sambhar Idly",
+            "price": 65,
+            "description": "Idlis soaked in hot sambhar, served with chutney on the side for added flavor.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/sambharidly.jpeg"
+        },
+        {
+            "id": 16,
+            "name": "Vada",
+            "price": 50,
+            "description": "Crispy, deep-fried lentil doughnuts with a crunchy exterior and soft interior.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/vada.jpeg"
+        },
+        {
+            "id": 17,
+            "name": "Idly+Vada+Upma",
+            "price": 90,
+            "description": "A combo of soft idli, crispy vada, and flavorful upma, served with chutney and sambhar.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/idly+vada+upma.jpeg"
+        },
+        {
+            "id": 18,
+            "name": "Upma",
+            "price": 40,
+            "description": "A savory semolina dish cooked with spices, vegetables, and a hint of lemon.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/upma.jpeg"
+        },
+        {
+            "id": 19,
+            "name": "Sambhar Vada",
+            "price": 60,
+            "description": "Crispy vada soaked in hot sambhar, garnished with onions and fresh coriander.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/sambharvada.jpeg"
+        },
+        {
+            "id": 20,
+            "name": "Perugu Vada",
+            "price": 65,
+            "description": "Soft vada soaked in spiced yogurt and topped with tempered mustard seeds and chilies.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/peruguvada.jpeg"
+        },
+        {
+            "id": 21,
+            "name": "Mysore Bonda",
+            "price": 50,
+            "description": "Crispy, round fritters made with flour and spiced with green chilies and ginger.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/mysorebonda.jpeg"
+        },
+        {
+            "id": 22,
+            "name": "Onion Minapa Dosa",
+            "price": 90,
+            "description": "Crispy dosa made with urad dal and rice batter, topped with onions and spices.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/onionminapadosa.avif"
+        },
+        {
+            "id": 23,
+            "name": "Plain Dosa",
+            "price": 70,
+            "description": "Classic thin and crispy dosa served with chutney and sambhar for dipping.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/plaindosa.jpeg"
+        },
+        {
+            "id": 24,
+            "name": "Masala Rava Dosa",
+            "price": 100,
+            "description": "Crispy rava dosa with a spiced potato filling, served with chutney and sambhar.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/masalaravadosa.jpeg"
+        },
         
+        {
+            "id": 25,
+            "name": "Upma Pesarattu",
+            "price": 95,
+            "description": "A unique combination of upma and pesarattu (green gram dosa), served with chutney.",
+            "category": "Breakfast",
+            "imageURL": "/pictures/upmapesarattu.jpeg"
+        }
+    
+    
 ]
