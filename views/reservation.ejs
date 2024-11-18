@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('/pictures/background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .bg-overlay {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay to enhance text readability */
+            backdrop-filter: blur(8px); /* Blur effect for background */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
+    <!-- Fixed Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
+        <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
+        
+        <!-- Hamburger Menu Icon for Mobile -->
+        <button id="menu-toggle" class="text-white block lg:hidden">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        
+        <!-- Navbar Links -->
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
+            <% if (username) { %>
+                <!-- Display username if logged in -->
+                <li>
+                    <span class="block text-white font-bold text-[14px]">Welcome, <%= username %>!</span>
+                </li>
+                <li>
+                    <a href="/logout" class="block text-white font-bold text-[14px]">Logout</a>
+                </li>
+            <% } else { %>
+                <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+            <% } %>
+        </ul>
+    </nav>
+
+    <div class="container mx-auto p-2 pt-[80px]">
+        <div class="min-h-screen flex items-center justify-center">
+            <div class="p-8 rounded-lg shadow-lg max-w-4xl w-full mx-4">
+                <div class="flex flex-col lg:flex-row lg:space-x-12">
+                    <!-- Reservation Form -->
+                    <div class="lg:w-2/3 p-8 bg-gray-800 rounded-lg shadow-lg">
+                        <h2 class="text-3xl font-semibold mb-4 text-center text-gray-200">Online Reservation</h2>
+                        <p class="text-center text-gray-400 mb-6">
+                            Booking request <span class="text-yellow-400">+91 9392-461-211</span> or fill out the order form
+                        </p>
+                        
+                        <form action="/api/reservation/create" method="POST" id="reservation-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <input type="text" name="name" placeholder="Your Name" class="p-3 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+                                <input type="tel" name="phone" placeholder="Phone Number" class="p-3 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <select name="people" class="p-3 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                    <option>1 Person</option>
+                                    <option>2 Persons</option>
+                                    <option>3 Persons</option>
+                                    <option>4 Persons</option>
+                                    <option>5+ Persons</option>
+                                </select>
+                                <input type="date" name="date" class="p-3 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+                                <select name="time" class="p-3 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                    <option>08:00 am</option>
+                                    <option>09:00 am</option>
+                                    <option>10:00 am</option>
+                                    <option>11:00 am</option>
+                                    <option>12:00 pm</option>
+                                    <option>01:00 pm</option>
+                                    <option>02:00 pm</option>
+                                    <option>03:00 pm</option>
+                                    <option>06:00 pm</option>
+                                    <option>07:00 pm</option>
+                                    <option>08:00 pm</option>
+                                    <option>09:00 pm</option>
+                                    <option>10:00 pm</option>
+                                </select>
+                            </div>
+                            <textarea name="message" placeholder="Message" class="w-full p-3 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 mb-4" rows="4"></textarea>
+                            <button type="submit" class="w-full bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg hover:bg-yellow-600 transition">
+                                Book a Table
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="lg:w-1/3 p-8 bg-gray-800 rounded-lg shadow-lg mt-12 lg:mt-0">
+                        <h2 class="text-3xl font-semibold mb-4 text-center text-gray-200">Contact Us</h2>
+                        <p class="text-center text-yellow-400 text-xl font-semibold mb-4">+91 9392-461-211</p>
+                        
+                        <div class="text-center text-gray-400 mb-4">
+                            <p>Restaurant, Indore,</p>
+                            <p>Madhya Pradesh, India</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-yellow-400 mb-2">Lunch Time</h3>
+                            <p class="text-gray-400">Monday to Sunday</p>
+                            <p class="text-gray-400 mb-4">11:00 am - 3:00 pm</p>
+                            
+                            <h3 class="text-lg font-semibold text-yellow-400 mb-2">Dinner Time</h3>
+                            <p class="text-gray-400">Monday to Sunday</p>
+                            <p class="text-gray-400">6:00 pm - 10:00 pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger menu toggle for mobile
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

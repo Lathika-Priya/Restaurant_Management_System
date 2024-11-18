@@ -9,14 +9,14 @@ exports.signup = async (req, res) => {
     const { username, email, mobilenumber, password } = req.body;
 
     if (!username || !email || !password) {
-        return res.status(400).json({ message: 'Username, email, and password are required.' });
+        return res.status(400).send({ message: 'Username, email, and password are required.' });
     }
 
     try {
         // Check if the user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(400).send({ message: 'User already exists' });
         }
 
         // Create a new user
@@ -32,43 +32,35 @@ exports.signup = async (req, res) => {
         // Generate a JWT token
         const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(201).json({ message: 'User created successfully', token });
-        res.status(200).redirect(`/home?username=${user.username}`);
-        // After successful login or signup
-// localStorage.setItem('username', username);  // Store the username
-// localStorage.setItem('token', token);        // Store the token
+        res.status(201).send({ message: 'User created successfully', token });
+        
+        res.status(200).redirect(`/home?username=${encodeURIComponent(user.username)}&token=${encodeURIComponent(token)}`);       // Store the token
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).send({ error: error.message });
     }
 };
-
+const username = null;
+const token = null;
 // User login
 exports.login = async (req, res) => {
     const { username, password } = req.body;
-    console.log('Attempting to login with username:', username);
     try {
         const user = await User.findOne({ username });
         if (!user) {
-            
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).send('User not found');
         }
 
-        // Check if the password is valid
         const isPasswordCorrect = await user.isValidPassword(password);
         if (!isPasswordCorrect) {
-            return res.status(400).json({ message: 'Invalid password' });
+            return res.status(400).send('Invalid password');
         }
 
-        // Generate JWT token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-        res.status(200).json({ message: 'Login successful', token });
-        res.status(200).redirect(`/home?username=${user.username}`);
-        // After successful login or signup
-// localStorage.setItem('username', username);  // Store the username
-// localStorage.setItem('token', token);        // Store the token
+        req.session.username = username;
+        req.session.token = token;
+        res.status(200).redirect(`/home?username=${encodeURIComponent(user.username)}&token=${encodeURIComponent(token)}`);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).send('An error occurred');
     }
 };
 

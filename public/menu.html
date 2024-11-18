@@ -16,7 +16,7 @@
             height: 100%;
             filter: blur(4px);
             z-index: -1;
-            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
+            background-color: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -25,7 +25,6 @@
     <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
         <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
         
-        <!-- Hamburger Menu Icon for Mobile -->
         <button id="menu-toggle" class="text-white block lg:hidden">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -39,7 +38,9 @@
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+            <li><a id="username"
+                    class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md">Login/Signup</a>
+            </li>
         </ul>
     </nav>
 
@@ -52,52 +53,117 @@
                 <hr class="w-1/5 border-gray-500">
             </div>
         </div>
-  <!-- Fixed Navbar -->
-    <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-20 "></div>
-</div>
+        <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-20"></div>
+        
+        <!-- Breakfast Section Heading (Initially Hidden) -->
+        <div id="breakfastHeading" class="text-center mb-10 hidden">
+            <div class="flex items-center justify-center">
+                <hr class="w-1/5 border-gray-500">
+                <h3 class="px-4 text-2xl font-bold text-gray-900">BREAKFAST</h3>
+                <hr class="w-1/5 border-gray-500">
+            </div>
+        </div>
+        
+        <div id="breakfastContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-20"></div>
+        </div>
 
 <script>
-   document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('menu-toggle').addEventListener('click', () => {
             const menu = document.getElementById('menu');
             menu.classList.toggle('hidden');
         });
+
     async function fetchMenuItems() {
-      try {
-        const response = await fetch('/api/menuitems');
-        if (!response.ok) throw new Error('Network response was not ok');
-        
-        const menuItems = await response.json();
-        console.log(menuItems); // Log fetched data for debugging
-  
-        const menuContainer = document.getElementById('menuContainer');
-        menuContainer.innerHTML = '';
-  
-        if (menuItems.length === 0) {
-          menuContainer.innerHTML = '<p>No menu items available.</p>';
-        } else {
-          menuItems.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'menu-item';
-            itemElement.innerHTML = `
-              <div class="menu-item">
-                <img src="${item.imageURL}" alt="${item.name}" class="w-40 h-40 rounded-full mx-auto mb-4">
-                <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
-                <p class="text-sky-950 font-semibold">$${item.price}</p>
-                <p class="text-black font-medium text-sm mt-2">${item.description}</p>
-              </div>
-            `;
-            menuContainer.appendChild(itemElement);
-          });
+        try {
+            const response = await fetch('/api/menu');
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            const menuItems = await response.json();
+            console.log(menuItems); // Log fetched data for debugging
+
+            const menuContainer = document.getElementById('menuContainer');
+            const breakfastHeading = document.getElementById('breakfastHeading');
+            const breakfastContainer = document.getElementById('breakfastContainer');
+            let hasBreakfastItems = false;
+
+            menuContainer.innerHTML = '';
+            breakfastContainer.innerHTML = '';
+
+            if (menuItems.length === 0) {
+                menuContainer.innerHTML = '<p>No menu items available.</p>';
+            } else {
+                menuItems.forEach(item => {
+                    // Display "RECOMMENDED FOR YOU" items
+                    if (item.id <= 8) {
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'menu-item';
+                        itemElement.innerHTML = `
+                            <div class="menu-item">
+                                <img src="${item.imageURL}" alt="${item.name}" class="w-30 h-30 rounded-full mx-auto mb-4">
+                                <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
+                                <p class="text-sky-950 font-semibold">$${item.price}</p>
+                                <p class="text-black font-medium text-sm mt-2">${item.description}</p>
+                            </div>
+                        `;
+                        menuContainer.appendChild(itemElement);
+                    }
+                    // Display "BREAKFAST" items
+                    else if (item.id > 8 && item.category === "Breakfast") {
+                        if (!hasBreakfastItems) {
+                            breakfastHeading.classList.remove('hidden'); // Show breakfast heading only once
+                            hasBreakfastItems = true;
+                        }
+
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'menu-item';
+                        itemElement.innerHTML = `
+                            <div class="menu-item">
+                                <img src="${item.imageURL}" alt="${item.name}" class="w-30 h-30 rounded-full mx-auto mb-4">
+                                <h2 class="text-xl font-bold text-orange-950">${item.name}</h2>
+                                <p class="text-sky-950 font-semibold">$${item.price}</p>
+                                <p class="text-black font-medium text-sm mt-2">${item.description}</p>
+                            </div>
+                        `;
+                        breakfastContainer.appendChild(itemElement);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching menu items:', error);
+            document.getElementById('menuContainer').innerHTML = '<p>Error loading menu items.</p>';
         }
-      } catch (error) {
-        console.error('Error fetching menu items:', error);
-        document.getElementById('menuContainer').innerHTML = '<p>Error loading menu items.</p>';
-      }
     }
-  
+
     document.addEventListener('DOMContentLoaded', fetchMenuItems);
-  </script>
-  
-    </body>
-    </html>
+        fetch('/api/user/get-session')
+            .then(response => response.json())
+            .then(data => {
+                const usernameElement = document.getElementById('username');
+
+                if (data.username && data.token) {
+                    // User is logged in
+                    usernameElement.textContent = `${data.username}`;
+
+                    // Add event listener to redirect to profile when clicked
+                    usernameElement.addEventListener('click', () => {
+                        window.location.href = '/profile'; // Redirect to profile page
+                    });
+                } else {
+                    // User is not logged in
+                    usernameElement.textContent = '/Login';
+
+                    // Add event listener to redirect to login when clicked
+                    usernameElement.addEventListener('click', () => {
+                        window.location.href = 'login.html'; // Redirect to login page
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching session data:', error);
+                document.getElementById('username').textContent = 'Error loading session data';
+            });
+</script>
+</body>
+
+</html>
 

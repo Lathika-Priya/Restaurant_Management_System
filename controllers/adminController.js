@@ -59,10 +59,10 @@ exports.deleteEmployee = [checkAdminRole, async (req, res) => {
 // Menu management
 
 // Create a new menu item
-exports.createMenuItem = [checkAdminRole, async (req, res) => {
+exports.createmenu = [checkAdminRole, async (req, res) => {
     try {
-        const newMenuItem = new Menu(req.body);
-        await newMenuItem.save();
+        const newmenu = new Menu(req.body);
+        await newmenu.save();
         res.status(201).json({ message: 'Menu item added successfully', menuItem: newMenuItem });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -70,7 +70,7 @@ exports.createMenuItem = [checkAdminRole, async (req, res) => {
 }];
 
 // Update a menu item
-exports.updateMenuItem = [checkAdminRole, async (req, res) => {
+exports.updatemenu = [checkAdminRole, async (req, res) => {
     try {
         const menuItem = await Menu.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!menuItem) return res.status(404).json({ message: 'Menu item not found' });
@@ -82,7 +82,7 @@ exports.updateMenuItem = [checkAdminRole, async (req, res) => {
 }];
 
 // Delete a menu item
-exports.deleteMenuItem = [checkAdminRole, async (req, res) => {
+exports.deletemenu = [checkAdminRole, async (req, res) => {
     try {
         const menuItem = await Menu.findByIdAndDelete(req.params.id);
         if (!menuItem) return res.status(404).json({ message: 'Menu item not found' });

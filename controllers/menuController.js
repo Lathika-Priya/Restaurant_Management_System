@@ -1,5 +1,5 @@
-const Menu = require('../models/menu.js');
 
+const MenuItem=require('../models/menu.js');
 // Get all menu items
 exports.getAllMenuItems = async (req, res) => {
     try {

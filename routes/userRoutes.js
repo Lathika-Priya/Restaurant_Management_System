@@ -28,5 +28,19 @@ router.get('/profile/:id', userController.getUserProfile);
 
 // Route to delete a user (optional, if needed)
 router.delete('/delete/:id', userController.deleteUser);
+router.get('/get-session', (req, res) => {
+    console.log('Handling /reservation request');
+    console.log(req.session.username);
+    if (req.session.username && req.session.token) {
+        // Send the session data as JSON
+        console.log('yesssss');
+        res.json({
+            username: req.session.username,
+            token: req.session.token
+        });
+    } else {
+        res.status(401).json({ message: 'No session data available' });
+    }
+});
 
 module.exports = router;

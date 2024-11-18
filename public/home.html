@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Background with Rotating Square</title>
+    <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Text Fade-in Effect */
@@ -32,7 +32,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Rotating square style */
         .rotate-square {
             animation: rotate 8s linear infinite;
         }
@@ -71,13 +70,9 @@
             transition: transform 0.3s ease;
         }
 
-        .order-btn:is(:hover, :focus-visible) {
+        .order-btn:hover {
             background-color: rgba(0, 0, 0, 0.3);
             transform: scale(1.05);
-        }
-
-        .order-btn:is(:hover, :focus-visible) .text-2 {
-            transform: translate(-50%, -50%) scale(1.05);
         }
     </style>
 </head>
@@ -85,7 +80,8 @@
     <!-- Fixed Navbar -->
     <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
         <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
-        
+
+        <div id="user-info" class="text-white font-bold text-[14px] uppercase"></div>
         <!-- Hamburger Menu Icon for Mobile -->
         <button id="menu-toggle" class="text-white block lg:hidden">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -94,130 +90,97 @@
         </button>
         
         <!-- Navbar Links -->
-        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 hidden lg:block">
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
             <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+            <li><a id="username"
+                    class="login-link block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md">Login/Signup</a>
+            </li>
         </ul>
     </nav>
+
     <!-- Fixed Background Image -->
     <div class="fixed-background" id="background-image" style="background-image: url('/pictures/bg1.avif');"></div>
 
     <!-- Text and Button over Fixed Background -->
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
         <h1 class="fade-in-text" id="carousel-text">Join for Delicious Food!</h1>
-        <button class="order-btn text-2" id="order-btn" >Order Online</button>
-
+        <button class="order-btn text-2" id="order-btn">Order Online</button>
     </div>
 
-    <!-- Book a Table Icon in Bottom Left Corner with Rotating Square -->
-    <div class="fixed bottom-10 left-10 flex items-center justify-center">
-        <!-- Anchor wrapping the whole box to make it clickable -->
-        <a href="/reservation" class="relative w-32 h-32">
-            <!-- Rotating Outer Square -->
-            <div class="absolute w-32 h-32 border-2 border-[#d6a86c] rotate-square"></div>
-            <!-- Inner Fixed Square with "Book a Table" Content -->
-            <div class="relative w-32 h-32 bg-[#d6a86c] flex flex-col items-center justify-center text-center">
-                <!-- Icon (replace with the actual path to your image) -->
-                <img src="pictures/hero-icon.png" alt="Table Icon" class="w-16 h-16 mb-1">
-                <!-- Text -->
-                <span class="text-black font-bold text-sm">BOOK A TABLE</span>
-            </div>
-        </a>
-    </div>
-    <div>
-        
-    </div>
     <script>
-         document.getElementById('menu-toggle').addEventListener('click', () => {
+                        document.getElementById('menu-toggle').addEventListener('click', () => {
             const menu = document.getElementById('menu');
             menu.classList.toggle('hidden');
-        });
-        // Array of text corresponding to each "slide"
-        const texts = [
-            "Flavours Inspired By Seasons",
-            "Where every flavour tells a Story",
-            "Join for Delicious Food!"
-        ];
+                    });
 
-        const btnTexts = [
-            "Order Online",
-            "Order Online",
-            "Order Online"
-        ];
-
-        // Array of background images
+                        const texts = ["Flavours Inspired By Seasons", "Where every flavour tells a Story", "Join for Delicious Food!"];
         const bgImages = [
             "url('/pictures/bg2.jpeg')",
-            "url('/pictures/bg3.webp')", // Replace with your second image
-            "url('/pictures/bg1.avif')"  // Replace with your third image
+            "url('/pictures/bg3.webp')",
+            "url('/pictures/bg1.avif')"
         ];
 
         let currentText = 0;
-        const textElement = document.getElementById('carousel-text');
-        const buttonElement = document.getElementById('order-btn');
+                        const textElement = document.getElementById('carousel-text');
         const backgroundElement = document.getElementById('background-image');
 
-        function changeText() {
-            textElement.classList.remove('fade-in-text');
-            
-            // Update text and button content
-            textElement.textContent = texts[currentText];
-            buttonElement.textContent = btnTexts[currentText];
-            
-            // Update background image
-            backgroundElement.style.backgroundImage = bgImages[currentText];
-            
-            // Re-apply the fade-in effect
-            setTimeout(() => {
-                textElement.classList.add('fade-in-text');
-            }, 500);
-
+                        function changeText() {
+                        textElement.textContent = texts[currentText];
+                        backgroundElement.style.backgroundImage = bgImages[currentText];
             currentText = (currentText + 1) % texts.length;
         }
-        document.getElementById("order-btn").addEventListener("click", function() {
-        // Redirect to menu2.html
-        window.location.href = "/order";
-    });
-    document.getElementById("book").addEventListener("click", function() {
-        // Redirect to menu2.html
-        window.location.href = "/reservation";
-    });
-        // Start the text rotation every 3 seconds
-        setInterval(changeText, 3000);
 
-        // Check if the user is logged in (e.g., using localStorage or cookies)
-    const token = localStorage.getItem('token');  // or check cookies if you're using them
-    const userInfoElement = document.getElementById('user-info');
 
-    if (token) {
-        // If the user is logged in, get the username from the token (or a separate storage)
-        const username = localStorage.getItem('username'); // Assuming you store the username in localStorage during login/signup
-        
-        // Update the navbar with the username and a logout button
-        userInfoElement.innerHTML = `
-            <span>Welcome, ${username}</span>
-            <button id="logout-btn" class="text-white font-bold text-[14px] uppercase leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md">Logout</button>
-        `;
-        
-        // Handle logout
-        document.getElementById('logout-btn').addEventListener('click', function() {
-            // Clear the token and username from storage
-            localStorage.removeItem('token');
-            localStorage.removeItem('username');
-            
-            // Redirect to the login page
-            window.location.href = '/login';
-        });
-    } else {
-        // If the user is not logged in, show the Login/Signup link
-        userInfoElement.innerHTML = '<a href="/login" class="text-white font-bold text-[14px] uppercase no-underline leading-[80px] px-[30px] py-[12px] transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md">Login/Signup</a>';
-    }
 
-    </script>
+                    function updateLoginStatus() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const username = urlParams.get('username');
+                        const token = urlParams.get('token');
 
+                    const loginlink = document.getElementsByClassName('login-link')[0]; // Select the first element
+                    console.log('Token:', token);  // Check if token is retrieved
+                    console.log('Username:', username);  // Check if username is retrieved
+
+                                if (token && username) {
+                                    console.log('Updating login link...');
+                                    loginlink.textContent = username; // Set the username
+                                    loginlink.href = "/home"; // Update the href to point to the home page
+                                } else {
+                                    console.log('No token or username found');
+                                }
+                            }
+                            updateLoginStatus();
+                            fetch('/api/user/get-session')
+                                .then(response => response.json())
+                                .then(data => {
+                                    const usernameElement = document.getElementById('username');
+
+                            if (data.username && data.token) {
+                                // User is logged in
+                                usernameElement.textContent = `${data.username}`;
+                    
+                        // Add event listener to redirect to profile when clicked
+                        usernameElement.addEventListener('click', () => {
+                            window.location.href = '/profile'; // Redirect to profile page
+                        });
+                    } else {
+                        // User is not logged in
+                        usernameElement.textContent = '/Login';
+
+                        // Add event listener to redirect to login when clicked
+                        usernameElement.addEventListener('click', () => {
+                            window.location.href = 'login.html'; // Redirect to login page
+                        });
+                    }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching session data:', error);
+                            document.getElementById('username').textContent = 'Error loading session data';
+                        });
+                </script>
 </body>
 </html>

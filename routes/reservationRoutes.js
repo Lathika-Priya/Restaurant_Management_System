@@ -1,26 +1,22 @@
 // routes/reservationRoutes.js
 const express = require('express');
 const router = express.Router();
-const reservationController = require('../controllers/reservationController.js');
-const { authenticateUser, authenticateAdmin } = require('../middleware/authMiddleware');
+const reservationController = require('../controllers/reservationController');
+const authenticateUser = require('../middleware/authMiddleware');
 
 // User can create a reservation
-// router.post('/create', authenticateUser, reservationController.createReservation);
-router.post('/create', authenticateUser, (req, res) => {
-    console.log('Create reservation route hit');
-    reservationController.createReservation(req, res);
-});
+router.post('/createReservation',authenticateUser, reservationController.createReservation);
 
 // Admin can view all reservations
-router.get('/', authenticateAdmin, reservationController.getAllReservations);
+router.get('/', reservationController.getAllReservations);
 
 // View a single reservation by ID (Admin or User)
-router.get('/:id', authenticateUser, reservationController.getReservationById);
+router.get('/:id', reservationController.getReservationById);
 
 // Admin can update reservation status
-router.put('/:id/status', authenticateAdmin, reservationController.updateReservationStatus);
+router.put('/:id/status', reservationController.updateReservationStatus);
 
 // User can cancel their reservation or Admin can cancel any reservation
-router.delete('/:id', authenticateUser, reservationController.cancelReservation);
+router.delete('/:id', reservationController.cancelReservation);
 
 module.exports = router;

@@ -45,37 +45,15 @@
             <img src="https://img.icons8.com/ios-filled/50/FFFFFF/shopping-bag.png" alt="Shopping Bag" class="w-8 h-8 mr-3">
             <h1 class="text-2xl font-bold text-gray-100">MyCart</h1>
           </header>
-        
-          <!-- Cart Content -->
-          <div class="container mx-auto my-8 p-4 bg-white shadow-lg rounded-lg">
-            <!-- Cart Item List -->
-            <div id="cartItems" class="space-y-4">
-              <!-- Example Item (Static) -->
-              <div class="flex items-center justify-between p-4 border-b">
-                <div class="flex items-center">
-                  <img src="https://via.placeholder.com/60" alt="Food Item" class="w-16 h-16 object-cover rounded mr-4">
-                  <div>
-                    <h2 class="text-lg font-semibold">Sample Dish</h2>
-                    <p class="text-gray-500">$12.99</p>
-                  </div>
-                </div>
-                <div class="flex items-center">
-                  <button onclick="updateQuantity('decrease', 1)" class="px-2 py-1 bg-gray-200 text-gray-600 rounded">-</button>
-                  <span id="quantity-1" class="px-4">1</span>
-                  <button onclick="updateQuantity('increase', 1)" class="px-2 py-1 bg-gray-200 text-gray-600 rounded">+</button>
-                </div>
-              </div>
-              <!-- Dynamic items will be added here -->
-            </div>
-        
-            <!-- Cart Summary -->
-            <div class="mt-6 text-right">
-              <h2 class="text-xl font-semibold">Total: $<span id="totalAmount">12.99</span></h2>
-              <button onclick="checkout()" class="mt-4 px-6 py-2 bg-blue-600 text-white font-bold rounded">Checkout</button>
-            </div>
+          <div id="cart-items"></div> <!-- This is where cart items will be displayed -->
+          <div id="cart-summary">
+              <p>Total Price: $<span id="total-price">0</span></p>
+              <button id="checkout-btn">Proceed to Checkout</button>
           </div>
-        
-    </section>
+      </div>
+  
+      <script src="script2.js"></script>
+          
     <script>
         // Toggle mobile menu visibility
         document.getElementById('menu-toggle').addEventListener('click', () => {
@@ -83,69 +61,7 @@
             menu.classList.toggle('hidden');
         });
 
-        let cart = [
-      { id: 1, name: "Sample Dish", price: 12.99, quantity: 1 }
-    ];
-
-    function updateQuantity(action, id) {
-      const item = cart.find(item => item.id === id);
-      if (item) {
-        if (action === 'increase') {
-          item.quantity++;
-        } else if (action === 'decrease' && item.quantity > 1) {
-          item.quantity--;
-        }
-        document.getElementById(`quantity-${id}`).innerText = item.quantity;
-        updateTotal();
-      }
-    }
-
-    function updateTotal() {
-      const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-      document.getElementById('totalAmount').innerText = total.toFixed(2);
-    }
-
-    function checkout() {
-      alert("Proceeding to checkout!");
-      window.location.href = 'payment.html';
-
-      // Implement checkout logic here
-    }
-  function updateTotal() {
-    const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    document.getElementById('totalAmount').innerText = total.toFixed(2);
-
-    // Store the total amount in localStorage
-    localStorage.setItem('totalAmount', total.toFixed(2));
-  }
-
-
-    // Render dynamic items from the cart array (if more items are added dynamically)
-    function renderCartItems() {
-      const cartItemsContainer = document.getElementById('cartItems');
-      cartItemsContainer.innerHTML = '';
-      cart.forEach(item => {
-        cartItemsContainer.innerHTML += `
-          <div class="flex items-center justify-between p-4 border-b">
-            <div class="flex items-center">
-              <img src="https://via.placeholder.com/60" alt="${item.name}" class="w-16 h-16 object-cover rounded mr-4">
-              <div>
-                <h2 class="text-lg font-semibold">${item.name}</h2>
-                <p class="text-gray-500">$${item.price}</p>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <button onclick="updateQuantity('decrease', ${item.id})" class="px-2 py-1 bg-gray-200 text-gray-600 rounded">-</button>
-              <span id="quantity-${item.id}" class="px-4">${item.quantity}</span>
-              <button onclick="updateQuantity('increase', ${item.id})" class="px-2 py-1 bg-gray-200 text-gray-600 rounded">+</button>
-            </div>
-          </div>
-        `;
-      });
-      updateTotal();
-    }
-
-    document.addEventListener("DOMContentLoaded", renderCartItems);
+       
   </script>
 
     

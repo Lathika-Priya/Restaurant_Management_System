@@ -10,6 +10,6 @@ const menuItemSchema = new mongoose.Schema({
   imageURL: { type: String } // Optional field for item images
 });
 
-const Menuitem = mongoose.model('Menuitem', menuItemSchema);
+const menu = mongoose.model('menu', menuItemSchema);
 
-module.exports = Menuitem;
+module.exports = menu;

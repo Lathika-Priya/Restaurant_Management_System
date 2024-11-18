@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Profile Page</title>
+    <title>WEBDE - Menu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body::before {
@@ -18,9 +18,13 @@
             z-index: -1;
             background-color: rgba(0, 0, 0, 0.5); /* Black overlay with opacity */
         }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
-<body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
+<body class="bg-gray-900 flex flex-col items-center justify-start min-h-screen text-white">
     <!-- Fixed Navbar -->
     <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
         <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
@@ -34,105 +38,271 @@
         
         <!-- Navbar Links -->
         <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/menu">Menu</a></li>
-
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/cart">My Cart</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
-
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="home">Home</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="menu">Menu</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="reservation">Reserve</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="cart">My Cart</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="about-us">About Us</a></li>
+            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="login">Login/Signup</a></li>
         </ul>
     </nav>
-    <div class="container mx-auto p-4 pt-[120px]">
-        
-        <section class="text-center py-10">
-            <h2 class="text-4xl font-bold mb-6">Delicious Menu</h2>
-            <p class="text-xl text-gray-300">Special Selection</p>
-        </section>
-    
-        <div id="menu-container" class=" bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
 
+    <div class="container mx-auto p-4 pt-[100px] w-full">
+        <!-- Category Links Section -->
+        <div class="flex flex-wrap justify-center space-x-4 mb-8">
+            <a href="#recommended" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Recommended</a>
+            <a href="#breakfast" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Breakfast</a>
+            <a href="#main-course" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Main Course</a>
+            <a href="#starters" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Starters</a>
+            <a href="#biryani" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Biryani</a>
+            <a href="#desserts" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Desserts</a>
+            <a href="#beverages" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Beverages</a>
+            <a href="#combos" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Combos</a>
         </div>
+
+        <!-- Recommended Section -->
+        <section id="recommended" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">RECOMMENDED FOR YOU</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="menu-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Breakfast Section -->
+        <section id="breakfast" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">BREAKFAST</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="breakfast-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Main Course Section -->
+        <section id="main-course" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">MAIN COURSE</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="main-course-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Starters Section -->
+        <section id="starters" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">STARTERS</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="starters-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Biryani Section -->
+        <section id="biryani" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">BIRYANI</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="biryani-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Desserts Section -->
+        <section id="desserts" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">DESSERTS</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="desserts-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Beverages Section -->
+        <section id="beverages" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">BEVERAGES</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="beverages-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
+
+        <!-- Combos Section -->
+        <section id="combos" class="mb-10">
+            <div class="text-center mb-4">
+                <div class="flex items-center justify-center">
+                    <hr class="w-1/5 border-gray-500">
+                    <h3 class="px-4 text-2xl font-bold text-gray-700 text-3xl">COMBOS</h3>
+                    <hr class="w-1/5 border-gray-500">
+                </div>
+            </div>
+            <div id="combos-container" class="bg-black container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10"></div>
+        </section>
     </div>
+
     <script>
-         document.getElementById('menu-toggle').addEventListener('click', () => {
+        // Toggle Navbar Menu on Mobile
+        document.getElementById('menu-toggle').addEventListener('click', () => {
             const menu = document.getElementById('menu');
             menu.classList.toggle('hidden');
         });
 
-            let cart = [];
-            let eatList = [];
-    
-    // Fetch menu data from JSON and render items
-    fetch(' ./data/breakfast.json')
-        .then(response => response.json())
-        .then(data => {
-            const menuContainer = document.getElementById('menu-container');
-            data.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('bg-black', 'p-6', 'rounded-lg', 'shadow-lg', 'flex', 'items-center');
+        // Initialize Cart and Eat List from Local Storage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let eatList = JSON.parse(localStorage.getItem('eatList')) || [];
+
+        // Fetch Menu Items from API
+        fetch('/api/menu')
+            .then(response => response.json())
+            .then(data => {
+                const menuContainer = document.getElementById('menu-container');
+                const breakfastContainer = document.getElementById('breakfast-container');
+                const mainCourseContainer = document.getElementById('main-course-container');
+                const startersContainer = document.getElementById('starters-container');
+                const biryaniContainer = document.getElementById('biryani-container');
+                const dessertsContainer = document.getElementById('desserts-container');
+                const beveragesContainer = document.getElementById('beverages-container');
+                const combosContainer = document.getElementById('combos-container');
                 
-                itemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="w-24 h-24 rounded-lg mr-6">
-                    <div class="flex-grow">
-                        <h3 class="text-2xl font-semibold">${item.name} 
-                            ${item.label ? `<span class="text-sm text-yellow-500 ml-2">${item.label}</span>` : ''}
-                        </h3>
-                        <p class="text-gray-400">${item.description}</p>
+                let recommendedCount = 0;
 
-                        <div class="mt-4 flex items-center justify-between">
-                            <span class="text-xl font-bold">$${item.price.toFixed(2)}</span>
-                            <div class="flex items-center space-x-2">
-                                <button class="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg" onclick="adjustQuantity('${item.id}', -1)">-</button>
-                                <span id="quantity-${item.id}" class="px-2">0</span>
-                                <button class="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg" onclick="adjustQuantity('${item.id}', 1)">+</button>
-                            </div>
-                        </div>
+                if (data.length === 0) {
+                    menuContainer.innerHTML = '<p>No menu items available.</p>';
+                } else {
+                    // Loop through each item and display it in respective sections
+                    data.forEach(item => {
+                        // For Recommended section (first 8 items)
+                        if (recommendedCount < 8) {
+                            renderItem(menuContainer, item);
+                            recommendedCount++;
+                        }
 
-                        <div class="mt-4 flex space-x-4">
-                            <button class="bg-yellow-500 px-4 py-2 rounded-lg" onclick="addToCart('${item.name}', ${item.price}, '${item.id}')">Add to Cart</button>
-                            <button class="bg-gray-700 px-4 py-2 rounded-lg" onclick="saveToEatList('${item.name}')">Save to Eat List</button>
-                        </div>
+                        // For Breakfast section
+                        if (item.category.toLowerCase() === "breakfast") {
+                            renderItem(breakfastContainer, item);
+                        }
 
-                    </div>
+                        // For Main Course section
+                        if (item.category.toLowerCase() === "main course" || item.category.toLowerCase() === "maincourse") {
+                            renderItem(mainCourseContainer, item);
+                        }
 
-                `;
-                menuContainer.appendChild(itemElement);
-            });
-        })
-        .catch(error => console.error('Error loading menu data:', error));
-    
-    // Adjust quantity of items
-    function adjustQuantity(itemId, change) {
-        const quantityElement = document.getElementById(`quantity-${itemId}`);
-        let quantity = parseInt(quantityElement.innerText) || 1;
-        quantity = Math.max(1, quantity + change); // Ensure quantity doesn't go below 1
-        quantityElement.innerText = quantity;
-    }
-    
-    // Add item to cart
-    function addToCart(itemName, price, itemId) {
-        const quantity = parseInt(document.getElementById(`quantity-${itemId}`).innerText) || 1;
-        cart.push({ itemName, price, quantity });
-        alert(`${itemName} added to cart with quantity ${quantity}`);
-        console.log("Cart:", cart);
-    }
-    
-    // Save item to Eat List
-    function saveToEatList(itemName) {
-        if (!eatList.includes(itemName)) {
-            eatList.push(itemName);
-            alert(`${itemName} saved to Eat List`);
-            console.log("Eat List:", eatList);
-        } else {
-            alert(`${itemName} is already in your Eat List`);
+                        // For Starters section
+                        if (item.category.toLowerCase() === "starters") {
+                            renderItem(startersContainer, item);
+                        }
+
+                        // For Biryani section
+                        if (item.category.toLowerCase() === "biryani") {
+                            renderItem(biryaniContainer, item);
+                        }
+
+                        // For Desserts section
+                        if (item.category.toLowerCase() === "desserts") {
+                            renderItem(dessertsContainer, item);
+                        }
+
+                        // For Beverages section
+                        if (item.category.toLowerCase() === "beverages") {
+                            renderItem(beveragesContainer, item);
+                        }
+
+                        // For Combos section
+                        if (item.category.toLowerCase() === "combo" || item.category.toLowerCase() === "combos") {
+                            renderItem(combosContainer, item);
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('Error loading menu data:', error));
+
+        // Adjust Quantity Function
+        function adjustQuantity(itemId, change) {
+            const quantityElement = document.getElementById(`quantity-${itemId}`);
+            let quantity = parseInt(quantityElement.innerText) || 1;
+            quantity = Math.max(1, quantity + change); // Ensure quantity doesn't go below 1
+            quantityElement.innerText = quantity;
         }
-    }
-    
-</script>
 
+        // Add to Cart Function
+        function addToCart(itemName, price, itemId, imageURL) {
+            const quantity = parseInt(document.getElementById(`quantity-${itemId}`).innerText) || 1;
+            
+            // Check if the item is already in the cart
+            const existingItemIndex = cart.findIndex(item => item.id === itemId);
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity += quantity; // Update quantity if item already in cart
+            } else {
+                cart.push({ itemName, price, quantity, id: itemId, image: imageURL });
+            }
 
-  
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`${itemName} added to cart with quantity ${quantity}`);
+            console.log("Cart:", cart);
+            //window.location.href = 'mycart.html'; // Redirect to cart page
+        }
+
+        // Save to Eat List Function
+        function saveToEatList(itemName) {
+            if (!eatList.includes(itemName)) {
+                eatList.push(itemName);
+                localStorage.setItem('eatList', JSON.stringify(eatList));
+                alert(`${itemName} saved to Eat List`);
+                console.log("Eat List:", eatList);
+            } else {
+                alert(`${itemName} is already in your Eat List`);
+            }
+        }
+
+        // Render Item Function
+        function renderItem(container, item) {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('bg-gray-800', 'p-6', 'rounded-lg', 'shadow-lg', 'flex', 'flex-col', 'md:flex-row', 'items-center');
+            
+            itemElement.innerHTML = `
+                <img src="${item.imageURL}" alt="${item.name}" class="w-32 h-32 rounded-lg mr-6 object-cover">
+                <div class="flex-grow mt-4 md:mt-0">
+                    <h3 class="text-2xl font-semibold text-yellow-500">${item.name} 
+                        ${item.label ? `<span class="text-sm text-gray-300 ml-2">${item.label}</span>` : ''}
+                    </h3>
+                    <p class="text-gray-400 mt-2">${item.description}</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-xl font-bold text-yellow-500">$${item.price.toFixed(1)}</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg" onclick="adjustQuantity('${item.id}', -1)">-</button>
+                            <span id="quantity-${item.id}" class="px-2">0</span>
+                            <button class="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg" onclick="adjustQuantity('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex space-x-4">
+                        <button class="bg-yellow-500 px-4 py-2 rounded-lg" onclick="addToCart('${item.name}', ${item.price}, '${item.id}', '${item.imageURL}')">Add to Cart</button>
+                        <button class="bg-gray-700 px-4 py-2 rounded-lg" onclick="saveToEatList('${item.name}')">Save to Eat List</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(itemElement);
+            
+        }
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>

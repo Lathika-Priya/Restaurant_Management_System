@@ -1,21 +1,25 @@
-const Reservation = require('../models/reservation.js');
+// controllers/reservationController.js
+const Reservation = require('../models/reservation');
+const authenticateUser = require('../middleware/authMiddleware');  // Import the middleware
 
 // Create a new reservation (User)
 exports.createReservation = async (req, res) => {
     try {
-        const { reservationDate, timeSlot, guests, specialRequests } = req.body;
+        const { name,phone,reservationDate, reservationTime, numberOfPeople, message } = req.body;
 
         // Create a new reservation using the authenticated user's ID
         const reservation = new Reservation({
-            userId: req.user._id,  // Access authenticated user's ID from req.user
+              // Access authenticated user's ID from req.user
             reservationDate,
-            timeSlot,
-            guests,
-            specialRequests
+            reservationTime,
+            numberOfPeople,
+            message,
+            name,
+            phone
         });
-        
+
         await reservation.save();
-        res.status(201).json({ message: 'Reservation created successfully', reservation });
+        res.status(201).send({ message: 'Reservation created successfully', reservation });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -36,12 +40,12 @@ exports.getReservationById = async (req, res) => {
     try {
         const reservation = await Reservation.findById(req.params.id).populate('userId', 'username email');
         if (!reservation) return res.status(404).json({ message: 'Reservation not found' });
-        
+
         // Check if the user is the owner of the reservation or an admin
         if (req.user._id.toString() !== reservation.userId._id.toString() && req.user.role !== 'admin') {
             return res.status(403).json({ message: 'Access denied' });
         }
-        
+
         res.status(200).json(reservation);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -52,7 +56,7 @@ exports.getReservationById = async (req, res) => {
 exports.updateReservationStatus = async (req, res) => {
     try {
         const { status } = req.body;  // Status: 'confirmed' or 'cancelled'
-        
+
         // Only admins should be allowed to update the reservation status
         if (req.user.role !== 'admin') {
             return res.status(403).json({ message: 'Access denied' });
@@ -60,7 +64,7 @@ exports.updateReservationStatus = async (req, res) => {
 
         const reservation = await Reservation.findByIdAndUpdate(req.params.id, { status }, { new: true });
         if (!reservation) return res.status(404).json({ message: 'Reservation not found' });
-        
+
         res.status(200).json({ message: 'Reservation status updated', reservation });
     } catch (error) {
         res.status(500).json({ error: error.message });
