@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MyCart</title>
     <script src="https://cdn.tailwindcss.com"></script>
-<style>
-     body {
+    <style>
+        body {
             font-family: 'Poppins', sans-serif;
             background-image: url('/public/pictures/background.png');
             background-size: cover;
@@ -17,53 +17,66 @@
             background-color: rgba(0, 0, 0, 0.7); /* Dark overlay to enhance text readability */
             backdrop-filter: blur(5px); /* Blur effect for background */
         }
-</style>
+    </style>
 </head>
-<body class="bg-overlay min-h-screen flex items-center justify-center">
+<body class="bg-overlay min-h-screen flex flex-col items-center">
+    <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] border-b border-white border-opacity-20 flex items-center justify-between h-[80px] px-4 z-10">
-        <!-- Logo -->
         <div class="logo text-[20px] font-bold uppercase text-white">WEBDE</div>
-        
-        <!-- Hamburger Menu Icon for Mobile -->
         <button id="menu-toggle" class="text-white block lg:hidden">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
         </button>
-        
-        <!-- Navbar Links -->
-        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 lg:m-0 lg:p-0 lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:flex-row lg:space-y-0 lg:space-x-4 absolute top-[80px] left-0 right-0 bg-[rgba(0,0,0,0.8)] space-y-4 h-auto w-full hidden lg:block">
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/home">Home</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/order">Order Online</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/reservation">Reserve</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/about-us">About Us</a></li>
-            <li><a class="block text-white font-bold text-[14px] uppercase no-underline px-4 py-2 transition duration-150 hover:bg-[rgba(0,0,0,0.7)] hover:rounded-md" href="/login">Login/Signup</a></li>
+        <ul id="menu" class="list-none lg:flex lg:items-center lg:space-x-6 hidden">
+            <li><a href="/home" class="text-white font-bold uppercase text-sm px-4 py-2 hover:bg-gray-700 rounded">Home</a></li>
+            <li><a href="/order" class="text-white font-bold uppercase text-sm px-4 py-2 hover:bg-gray-700 rounded">Order Online</a></li>
+            <li><a href="/reservation" class="text-white font-bold uppercase text-sm px-4 py-2 hover:bg-gray-700 rounded">Reserve</a></li>
+            <li><a href="/about-us" class="text-white font-bold uppercase text-sm px-4 py-2 hover:bg-gray-700 rounded">About Us</a></li>
+            <li><a href="/login" class="text-white font-bold uppercase text-sm px-4 py-2 hover:bg-gray-700 rounded">Login/Signup</a></li>
         </ul>
     </nav>
-    <section>
-        <header class="flex justify-center items-center p-5 shadow-md rounded-lg">
-            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/shopping-bag.png" alt="Shopping Bag" class="w-8 h-8 mr-3">
-            <h1 class="text-2xl font-bold text-gray-100">MyCart</h1>
-          </header>
-          <div id="cart-items"></div> <!-- This is where cart items will be displayed -->
-          <div id="cart-summary">
-              <p>Total Price: $<span id="total-price">0</span></p>
-              <button id="checkout-btn">Proceed to Checkout</button>
-          </div>
-      </div>
-  
-      <script src="script2.js"></script>
-          
+
+    <!-- Cart Header -->
+    <header class="mt-20 flex justify-center items-center bg-gray-800 bg-opacity-90 p-5 shadow-md rounded-lg w-11/12 md:w-3/4">
+        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/shopping-bag.png" alt="Shopping Bag" class="w-8 h-8 mr-3">
+        <h1 class="text-2xl font-bold text-gray-100">MyCart</h1>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="mt-6 bg-white bg-opacity-90 p-6 rounded-lg shadow-lg w-11/12 md:w-3/4">
+        <div id="cart-items" class="space-y-4">
+            <!-- Example of a Cart Item -->
+            <!-- Dynamically populate this area -->
+            <div class="flex justify-between items-center p-4 border border-gray-200 rounded-lg shadow-sm">
+                <div>
+                    <p class="text-lg font-medium text-gray-800">Item Name</p>
+                    <p class="text-sm text-gray-600">Quantity: 1</p>
+                </div>
+                <p class="text-lg font-semibold text-gray-800">$10</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Summary -->
+    <section class="mt-4 bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-11/12 md:w-3/4 text-white">
+        <div class="flex justify-between items-center mb-4">
+            <p class="text-lg font-semibold">Total Price:</p>
+            <span id="total-price" class="text-xl font-bold">$0</span>
+        </div>
+        <button id="checkout-btn" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg w-full">
+            Proceed to Checkout
+        </button>
+    </section>
+
+    <script src="/script2.js"></script>
+
     <script>
         // Toggle mobile menu visibility
         document.getElementById('menu-toggle').addEventListener('click', () => {
             const menu = document.getElementById('menu');
             menu.classList.toggle('hidden');
         });
-
-       
-  </script>
-
-    
+    </script>
 </body>
 </html>

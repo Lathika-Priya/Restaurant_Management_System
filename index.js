@@ -113,7 +113,7 @@ app.post('/api/reservation/createReservation', (req, res) => {
 app.get('/api/menu', async (req, res) => {
     try {
       const menuItems = await menu.find();
-      console.log("Fetched menu items:", menuItems); // Logs menu items to console
+      //console.log("Fetched menu items:", menuItems); // Logs menu items to console
       res.json(menuItems);
     } catch (error) {
       console.error('Error fetching menu items:', error);

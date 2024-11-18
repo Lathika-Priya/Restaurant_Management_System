@@ -166,6 +166,7 @@
 
         // Initialize Cart and Eat List from Local Storage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log("Cart initialized:", cart);
         let eatList = JSON.parse(localStorage.getItem('eatList')) || [];
 
         // Fetch Menu Items from API
@@ -251,13 +252,15 @@
                 cart[existingItemIndex].quantity += quantity; // Update quantity if item already in cart
             } else {
                 cart.push({ itemName, price, quantity, id: itemId, image: imageURL });
+                console.log("Item added to cart:", item);
             }
 
             // Save the updated cart back to localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
+            console.log("Updated cart:", cart);
 
             alert(`${itemName} added to cart with quantity ${quantity}`);
-            console.log("Cart:", cart);
+            
             //window.location.href = 'mycart.html'; // Redirect to cart page
         }
 
@@ -303,6 +306,6 @@
             
         }
     </script>
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
