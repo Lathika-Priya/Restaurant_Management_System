@@ -25,7 +25,7 @@
     "mysql": "^2.18.1",
     "node": "^22.11.0"
   },
-  "description": "",
+  "description": "Restaurant Management System",
   "devDependencies": {
     "nodemon": "^3.1.7"
   }
